@@ -37,69 +37,71 @@ export default function Header() {
   }, [menuOpen])
 
   return (
-    <header className={`header${scrolled ? ' header--scrolled' : ''}${menuOpen ? ' header--menu-open' : ''}`}>
-      <div className="container header__inner">
-        <Link to="/" className="header__logo">
-          <img src="/logo.png" alt="Breezyee Moves" className="header__logo-img" />
-        </Link>
+    <>
+      <header className={`header${scrolled ? ' header--scrolled' : ''}${menuOpen ? ' header--menu-open' : ''}`}>
+        <div className="container header__inner">
+          <Link to="/" className="header__logo">
+            <img src="/logo.png" alt="Breezyee Moves" className="header__logo-img" />
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="header__nav-desktop">
-          {navLinks.map((link) => (
-            <div key={link.path} className={`header__nav-item${link.hasDropdown ? ' header__nav-item--dropdown' : ''}`}>
-              <Link
-                to={link.path}
-                className={`header__link${location.pathname === link.path ? ' header__link--active' : ''}`}
-              >
-                {link.label}
+          {/* Desktop nav */}
+          <nav className="header__nav-desktop">
+            {navLinks.map((link) => (
+              <div key={link.path} className={`header__nav-item${link.hasDropdown ? ' header__nav-item--dropdown' : ''}`}>
+                <Link
+                  to={link.path}
+                  className={`header__link${location.pathname === link.path ? ' header__link--active' : ''}`}
+                >
+                  {link.label}
+                  {link.hasDropdown && (
+                    <svg className="header__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                  )}
+                </Link>
                 {link.hasDropdown && (
-                  <svg className="header__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                )}
-              </Link>
-              {link.hasDropdown && (
-                <div className="header__dropdown">
-                  <div className="header__dropdown-inner">
-                    <div className="header__dropdown-col">
-                      <span className="header__dropdown-heading">Removals</span>
-                      {removals.map((s) => (
-                        <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
-                      ))}
-                    </div>
-                    <div className="header__dropdown-col">
-                      <span className="header__dropdown-heading">Specialist</span>
-                      {specialist.map((s) => (
-                        <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
-                      ))}
-                    </div>
-                    <div className="header__dropdown-col">
-                      <span className="header__dropdown-heading">Support</span>
-                      {support.map((s) => (
-                        <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
-                      ))}
+                  <div className="header__dropdown">
+                    <div className="header__dropdown-inner">
+                      <div className="header__dropdown-col">
+                        <span className="header__dropdown-heading">Removals</span>
+                        {removals.map((s) => (
+                          <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
+                        ))}
+                      </div>
+                      <div className="header__dropdown-col">
+                        <span className="header__dropdown-heading">Specialist</span>
+                        {specialist.map((s) => (
+                          <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
+                        ))}
+                      </div>
+                      <div className="header__dropdown-col">
+                        <span className="header__dropdown-heading">Support</span>
+                        {support.map((s) => (
+                          <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
+                )}
+              </div>
+            ))}
+          </nav>
 
-        <Link to="/contact" className="btn header__cta">
-          GET A QUOTE
-        </Link>
+          <Link to="/contact" className="btn header__cta">
+            GET A QUOTE
+          </Link>
 
-        <button
-          className={`header__burger${menuOpen ? ' header__burger--open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
+          <button
+            className={`header__burger${menuOpen ? ' header__burger--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </header>
 
-      {/* Mobile fullscreen menu */}
+      {/* Mobile fullscreen menu — outside header to avoid stacking context issues */}
       <div className={`header__mobile${menuOpen ? ' header__mobile--open' : ''}`}>
         <div className="header__mobile-inner">
           <nav className="header__mobile-nav">
@@ -145,6 +147,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   )
 }
