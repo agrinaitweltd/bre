@@ -6,12 +6,11 @@ interface ServiceCardProps {
   img: string
   desc: string
   slug: string
-  delay?: number
 }
 
-export default function ServiceCard({ title, img, desc, slug, delay = 0 }: ServiceCardProps) {
+export default function ServiceCard({ title, img, desc, slug }: ServiceCardProps) {
   return (
-    <Link to={`/services/${slug}`} className="service-card fade-in" style={{ transitionDelay: `${delay}ms` }}>
+    <Link to={`/services/${slug}`} className="service-card">
       <div className="service-card__img">
         <img src={img} alt={title} loading="lazy" />
       </div>
