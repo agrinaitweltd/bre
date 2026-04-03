@@ -251,7 +251,8 @@
   }
 
   .header__cta {
-    display: none;
+    display: none !important;
+    pointer-events: none;
   }
 
   .header__burger {
@@ -269,6 +270,7 @@
     z-index: 1001;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     -webkit-overflow-scrolling: touch;
   }
@@ -276,6 +278,7 @@
   .header__mobile--open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .header__mobile-inner {

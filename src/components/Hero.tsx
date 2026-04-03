@@ -1,12 +1,8 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Hero.css'
 
-const phrases = [
-  'Simple',
-  'Reliable',
-  'Stress-Free',
-]
+const phrases = ['Simple', 'Reliable', 'Stress-Free']
 
 const stats = [
   { value: '500+', label: 'MOVES COMPLETED' },
@@ -16,36 +12,53 @@ const stats = [
 ]
 
 export default function Hero() {
-  const [phraseIdx, setPhraseIdx] = useState(0)
-  const [charIdx, setCharIdx] = useState(0)
-  const [deleting, setDeleting] = useState(false)
-
-  const tick = useCallback(() => {
-    const current = phrases[phraseIdx]
-    if (!deleting) {
-      if (charIdx < current.length) {
-        setCharIdx((c) => c + 1)
-      } else {
-        setTimeout(() => setDeleting(true), 1800)
-        return
-      }
-    } else {
-      if (charIdx > 0) {
-        setCharIdx((c) => c - 1)
-      } else {
-        setDeleting(false)
-        setPhraseIdx((p) => (p + 1) % phrases.length)
-      }
-    }
-  }, [charIdx, deleting, phraseIdx])
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const phraseIdx = useRef(0)
+  const pauseRef = useRef(false)
 
   useEffect(() => {
-    const speed = deleting ? 50 : 100
-    const timer = setTimeout(tick, speed)
-    return () => clearTimeout(timer)
-  }, [tick, deleting])
+    const current = phrases[phraseIdx.current]
 
-  const displayText = phrases[phraseIdx].slice(0, charIdx)
+    if (pauseRef.current) return
+
+    let delay: number
+
+    if (!isDeleting) {
+      if (displayText.length < current.length) {
+        // Typing — variable speed for natural feel
+        delay = 80 + Math.random() * 60
+      } else {
+        // Finished typing — pause before deleting
+        pauseRef.current = true
+        const t = setTimeout(() => {
+          pauseRef.current = false
+          setIsDeleting(true)
+        }, 2200)
+        return () => clearTimeout(t)
+      }
+    } else {
+      if (displayText.length > 0) {
+        // Deleting — faster
+        delay = 35 + Math.random() * 20
+      } else {
+        // Finished deleting — move to next phrase
+        setIsDeleting(false)
+        phraseIdx.current = (phraseIdx.current + 1) % phrases.length
+        return
+      }
+    }
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(current.slice(0, displayText.length + 1))
+      } else {
+        setDisplayText(current.slice(0, displayText.length - 1))
+      }
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [displayText, isDeleting])
 
   return (
     <section className="hero">
@@ -60,7 +73,7 @@ export default function Hero() {
             Moving Made{' '}
             <span className="hero__typed">
               {displayText}
-              <span className="hero__cursor">|</span>
+              <span className="hero__cursor" />
             </span>
           </h1>
           <p className="hero__subtitle">
