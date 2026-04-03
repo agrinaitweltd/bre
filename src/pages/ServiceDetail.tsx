@@ -34,7 +34,7 @@ export default function ServiceDetail() {
       {/* Content */}
       <section className="section sd-content" ref={contentRef}>
         <div className="container sd-content__grid">
-          <div className="sd-content__main fade-in">
+          <div className="sd-content__main slide-in-left">
             <div className="sd-content__image">
               <img src={service.img} alt={service.title} />
             </div>
@@ -42,7 +42,7 @@ export default function ServiceDetail() {
             <p>{service.fullDesc}</p>
           </div>
 
-          <div className="sd-content__sidebar fade-in">
+          <div className="sd-content__sidebar slide-in-right">
             <div className="sd-features">
               <h3>What's Included</h3>
               <ul>

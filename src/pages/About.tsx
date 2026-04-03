@@ -31,18 +31,18 @@ export default function About() {
           <div className="about-banner__overlay" />
         </div>
         <div className="container about-banner__inner">
-          <h1 className="about-banner__title">About Breezyee Moves</h1>
-          <p className="about-banner__subtitle">A social enterprise making moves matter.</p>
+          <h1 className="about-banner__title banner-anim">About Breezyee Moves</h1>
+          <p className="about-banner__subtitle banner-anim banner-anim--delay">A social enterprise making moves matter.</p>
         </div>
       </section>
 
       {/* Mission */}
       <section className="section about-mission" ref={missionRef}>
         <div className="container about-mission__inner">
-          <div className="about-mission__image fade-in">
+          <div className="about-mission__image slide-in-left">
             <img src="/about-impact.jpg" alt="Our team making an impact" />
           </div>
-          <div className="about-mission__content fade-in">
+          <div className="about-mission__content slide-in-right">
             <h2>Who We Are</h2>
             <p>
               Breezyee Moves was founded with a simple belief: moving house or office
@@ -63,8 +63,8 @@ export default function About() {
       {/* Values */}
       <section className="section about-values" ref={valuesRef}>
         <div className="container">
-          <h2 className="section-title fade-in">Our Values</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title blur-in">Our Values</h2>
+          <p className="section-subtitle blur-in">
             The principles that guide everything we do.
           </p>
           <div className="values-grid">
@@ -82,14 +82,14 @@ export default function About() {
       {/* Impact */}
       <section className="section about-impact" ref={impactRef}>
         <div className="container">
-          <h2 className="section-title fade-in">Our Impact</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title blur-in">Our Impact</h2>
+          <p className="section-subtitle blur-in">
             Numbers that reflect our commitment to London.
           </p>
           <div className="impact-grid">
             {stats.map((s, i) => (
-              <div className="impact-card fade-in" key={s.label} style={{ transitionDelay: `${i * 100}ms` }}>
-                <span className="impact-card__value">{s.value}</span>
+              <div className="impact-card slide-in-up" key={s.label} style={{ transitionDelay: `${i * 120}ms` }}>
+                <span className="impact-card__value counter-up" data-count={s.value}>{s.value}</span>
                 <span className="impact-card__label">{s.label}</span>
               </div>
             ))}

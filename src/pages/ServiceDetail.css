@@ -39,16 +39,30 @@
   font-weight: 500;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 16px;
-  transition: color var(--transition);
+  transition: color var(--transition), gap var(--transition);
+  animation: bannerSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
 .sd-banner__back:hover {
   color: var(--white);
+  gap: 10px;
 }
 
 .sd-banner__title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
+  animation: bannerSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+@keyframes bannerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Content Grid */

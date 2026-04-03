@@ -49,8 +49,8 @@ export default function Home() {
       {/* Services Overview */}
       <section className="section home-services" ref={servicesRef} id="services">
         <div className="container">
-          <h2 className="section-title fade-in">Our Services</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title blur-in">Our Services</h2>
+          <p className="section-subtitle blur-in">
             From a single item to an entire household, we offer a comprehensive range
             of removal and logistics services across London and beyond.
           </p>
@@ -68,7 +68,7 @@ export default function Home() {
       {/* About Section */}
       <section className="section home-about" ref={aboutRef}>
         <div className="container home-about__inner">
-          <div className="home-about__image scale-in">
+          <div className="home-about__image rotate-in">
             <img src="/about-impact.jpg" alt="Community impact" />
           </div>
           <div className="home-about__content slide-in-right">
@@ -92,8 +92,8 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="section home-why" ref={whyRef}>
         <div className="container">
-          <h2 className="section-title fade-in">Why Choose Breezyee Moves?</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title blur-in">Why Choose Breezyee Moves?</h2>
+          <p className="section-subtitle blur-in">
             We combine professional service with genuine community values.
           </p>
           <div className="why-grid stagger-children">
@@ -111,8 +111,8 @@ export default function Home() {
       {/* How It Works */}
       <section className="section home-how" ref={howRef}>
         <div className="container">
-          <h2 className="section-title fade-in">How It Works</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title slide-in-up">How It Works</h2>
+          <p className="section-subtitle slide-in-up">
             Three simple steps to a stress-free move.
           </p>
           <div className="steps-grid stagger-children">
@@ -130,8 +130,8 @@ export default function Home() {
       {/* Meet the Team */}
       <section className="section home-team" ref={teamRef}>
         <div className="container">
-          <h2 className="section-title fade-in">Meet the Team</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title blur-in">Meet the Team</h2>
+          <p className="section-subtitle blur-in">
             The people behind every successful move — dedicated, experienced, and passionate about what they do.
           </p>
           <div className="team-grid stagger-children">
@@ -154,8 +154,8 @@ export default function Home() {
       {/* Testimonials */}
       <section className="section home-testimonials" ref={testimonialsRef}>
         <div className="container">
-          <h2 className="section-title fade-in">What Our Customers Say</h2>
-          <p className="section-subtitle fade-in">
+          <h2 className="section-title slide-in-up">What Our Customers Say</h2>
+          <p className="section-subtitle slide-in-up">
             Don't just take our word for it — hear from people we've helped move.
           </p>
           <div className="testimonials-grid stagger-children">

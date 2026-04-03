@@ -13,6 +13,10 @@
 }
 
 /* Contact Form */
+.contact-form-wrap {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .contact-form h2 {
   font-size: 1.5rem;
   font-weight: 800;
@@ -80,6 +84,13 @@
 .contact-form__submit {
   margin-top: 8px;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 191, 165, 0.25);
 }
 
 /* Success State */
@@ -141,6 +152,17 @@
   border-radius: 50%;
   flex-shrink: 0;
   color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.contact-info__list li:hover .contact-info__icon {
+  background: var(--primary);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.contact-info__list li:hover .contact-info__icon svg {
+  stroke: var(--white);
 }
 
 .contact-info__list li div:not(.contact-info__icon) {

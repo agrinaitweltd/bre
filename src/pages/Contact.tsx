@@ -32,7 +32,7 @@ export default function Contact() {
       <section className="section contact-section" ref={formRef}>
         <div className="container contact-grid">
           {/* Form */}
-          <div className="contact-form-wrap fade-in">
+          <div className="contact-form-wrap slide-in-left">
             {submitted ? (
               <div className="contact-success">
                 <div className="contact-success__icon">
@@ -82,7 +82,7 @@ export default function Contact() {
           </div>
 
           {/* Info sidebar */}
-          <div className="contact-info fade-in">
+          <div className="contact-info slide-in-right">
             <div className="contact-info__card">
               <h3>Get In Touch</h3>
               <ul className="contact-info__list">

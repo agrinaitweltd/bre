@@ -16,6 +16,19 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false)
   const phraseIdx = useRef(0)
   const pauseRef = useRef(false)
+  const bgRef = useRef<HTMLDivElement>(null)
+
+  // Parallax scroll effect on hero background
+  useEffect(() => {
+    const onScroll = () => {
+      if (bgRef.current) {
+        const y = window.scrollY
+        bgRef.current.style.transform = `translate3d(0, ${y * 0.35}px, 0)`
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     const current = phrases[phraseIdx.current]
@@ -62,7 +75,7 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero__bg">
+      <div className="hero__bg" ref={bgRef}>
         <img src="/hero-moving.jpg" alt="" />
         <div className="hero__overlay" />
       </div>
@@ -91,8 +104,8 @@ export default function Hero() {
       </div>
       <div className="hero__stats">
         <div className="container hero__stats-inner">
-          {stats.map((s) => (
-            <div className="hero__stat" key={s.label}>
+          {stats.map((s, i) => (
+            <div className="hero__stat" key={s.label} style={{ animationDelay: `${1.2 + i * 0.15}s` }}>
               <span className="hero__stat-value">{s.value}</span>
               <span className="hero__stat-label">{s.label}</span>
             </div>

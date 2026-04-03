@@ -43,6 +43,26 @@
   opacity: 0.9;
 }
 
+/* Banner entrance animations */
+.banner-anim {
+  animation: bannerSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.banner-anim--delay {
+  animation-delay: 0.45s;
+}
+
+@keyframes bannerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Mission */
 .about-mission__inner {
   display: grid;
@@ -109,6 +129,22 @@
 .value-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
+}
+
+.value-card:hover .value-card__icon {
+  background: var(--primary);
+  animation: iconBounce 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.value-card:hover .value-card__icon svg {
+  stroke: var(--white);
+}
+
+@keyframes iconBounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
 
 .value-card__icon {

@@ -10,6 +10,7 @@
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   margin-bottom: 12px;
+  animation: bannerSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 .page-banner__subtitle {
@@ -17,6 +18,18 @@
   opacity: 0.9;
   max-width: 500px;
   margin: 0 auto;
+  animation: bannerSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes bannerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Services Page */
@@ -59,7 +72,8 @@
 
 .service-item:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 12px 32px rgba(0, 191, 165, 0.1);
+  border: 1px solid rgba(0, 191, 165, 0.2);
 }
 
 .service-item__img {

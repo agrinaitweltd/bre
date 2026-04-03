@@ -10,7 +10,8 @@
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 191, 165, 0.12);
+  border: 1px solid rgba(0, 191, 165, 0.2);
 }
 
 .service-card__img {
