@@ -2,7 +2,7 @@
 .contact-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 40px;
+  gap: 56px;
   align-items: start;
 }
 

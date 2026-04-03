@@ -69,7 +69,7 @@
 .sd-content__grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: 48px;
+  gap: 60px;
   align-items: start;
 }
 
