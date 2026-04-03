@@ -13,14 +13,14 @@
   --accent: #7B2D8E;
   --accent-dark: #5C1D6E;
   --accent-light: #f3e5f5;
-  --text: #1e293b;
+  --text: #0f172a;
   --text-light: #64748b;
   --white: #ffffff;
   --bg: #f8fafa;
   --border: #e2e8f0;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
   --radius: 12px;
   --radius-sm: 8px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -38,6 +38,21 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Smooth page reveal */
+main {
+  animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 a {
@@ -137,15 +152,16 @@ input, textarea, select {
   text-align: center;
   margin-bottom: 16px;
   color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
   text-align: center;
   color: var(--text-light);
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto 48px;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 /* Fade-in animation */

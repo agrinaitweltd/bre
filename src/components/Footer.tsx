@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; {new Date().getFullYear()} Breezyee Moves. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Breezyee Moves. All rights reserved. Made & Designed By <a href="https://www.kavotech.uk" target="_blank" rel="noopener noreferrer" className="footer__credit">Kavo Technologies</a></p>
         </div>
       </div>
     </footer>

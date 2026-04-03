@@ -21,10 +21,10 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(0, 60, 55, 0.75) 50%,
-    rgba(123, 45, 142, 0.3) 100%
+    135deg,
+    rgba(8, 8, 8, 0.92) 0%,
+    rgba(8, 8, 8, 0.82) 40%,
+    rgba(0, 50, 45, 0.7) 100%
   );
 }
 
@@ -115,28 +115,31 @@
 
 .hero__btn-quote {
   padding: 16px 36px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   background: var(--white);
   color: var(--text);
   border: 2px solid var(--white);
+  text-transform: uppercase;
 }
 
 .hero__btn-quote:hover {
   background: transparent;
   color: var(--white);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .hero__btn-services {
   padding: 16px 36px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   background: transparent;
   color: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
 }
 
 .hero__btn-services:hover {

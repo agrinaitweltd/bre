@@ -1,7 +1,7 @@
 .footer {
-  background: var(--text);
+  background: #0a0a0a;
   color: rgba(255, 255, 255, 0.85);
-  padding: 64px 0 0;
+  padding: 72px 0 0;
 }
 
 .footer__grid {
@@ -81,10 +81,20 @@
 .footer__bottom {
   margin-top: 48px;
   padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
   font-size: 0.85rem;
   opacity: 0.6;
+}
+
+.footer__credit {
+  color: var(--primary);
+  font-weight: 600;
+  transition: opacity var(--transition);
+}
+
+.footer__credit:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 900px) {

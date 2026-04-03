@@ -1,6 +1,6 @@
 /* Page Banner (shared) */
 .page-banner {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: var(--text);
   padding: 140px 0 60px;
   text-align: center;
   color: var(--white);
