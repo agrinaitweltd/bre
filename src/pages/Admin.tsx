@@ -11,6 +11,15 @@ const bookings = [
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "Ollya1#234";
 
+const sidebarLinks = [
+  { icon: "🏠", label: "Dashboard" },
+  { icon: "📋", label: "Bookings" },
+  { icon: "👤", label: "Contacts" },
+  { icon: "📊", label: "Statistics" },
+  { icon: "📅", label: "Calendar" },
+  { icon: "💰", label: "Finance" },
+];
+
 const Admin: React.FC = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -63,33 +72,74 @@ const Admin: React.FC = () => {
   }
 
   return (
-    <div className="admin-container">
-      <h1 className="admin-title">Admin Dashboard</h1>
-      <div className="admin-table-wrapper">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Date</th>
-              <th>Service</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.id}</td>
-                <td>{booking.name}</td>
-                <td>{booking.email}</td>
-                <td>{booking.phone}</td>
-                <td>{booking.date}</td>
-                <td>{booking.service}</td>
-              </tr>
+    <div className="admin-dashboard-bg">
+      <div className="admin-dashboard-card">
+        <aside className="admin-sidebar">
+          <div className="admin-sidebar-header">AdminPro</div>
+          <nav className="admin-sidebar-nav">
+            {sidebarLinks.map(link => (
+              <div key={link.label} className={`admin-sidebar-link${link.label === 'Dashboard' ? ' active' : ''}`}>
+                <span className="admin-sidebar-icon">{link.icon}</span>
+                <span>{link.label}</span>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </nav>
+        </aside>
+        <main className="admin-main">
+          <div className="admin-main-header">
+            <div>
+              <div className="admin-welcome">Welcome back, Admin 👋</div>
+              <h1 className="admin-dashboard-title">Dashboard</h1>
+            </div>
+            <div className="admin-profile">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" className="admin-profile-img" />
+              <span className="admin-profile-name">Admin</span>
+            </div>
+          </div>
+          <div className="admin-dashboard-cards">
+            <div className="admin-dashboard-cardbox">
+              <div className="admin-dashboard-cardtitle">Total Bookings</div>
+              <div className="admin-dashboard-cardvalue">{bookings.length}</div>
+            </div>
+            <div className="admin-dashboard-cardbox">
+              <div className="admin-dashboard-cardtitle">Upcoming</div>
+              <div className="admin-dashboard-cardvalue">{bookings.filter(b => new Date(b.date) >= new Date()).length}</div>
+            </div>
+            <div className="admin-dashboard-cardbox">
+              <div className="admin-dashboard-cardtitle">Contacts</div>
+              <div className="admin-dashboard-cardvalue">{bookings.length}</div>
+            </div>
+            <div className="admin-dashboard-cardbox">
+              <div className="admin-dashboard-cardtitle">Revenue</div>
+              <div className="admin-dashboard-cardvalue">$0</div>
+            </div>
+          </div>
+          <div className="admin-dashboard-tablecard">
+            <div className="admin-dashboard-tableheader">Recent Bookings</div>
+            <table className="admin-dashboard-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Date</th>
+                  <th>Service</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings.map((booking) => (
+                  <tr key={booking.id}>
+                    <td>{booking.name}</td>
+                    <td>{booking.email}</td>
+                    <td>{booking.phone}</td>
+                    <td>{booking.date}</td>
+                    <td>{booking.service}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </main>
       </div>
     </div>
   );
