@@ -8,7 +8,6 @@ const navLinks = [
   { label: 'About', path: '/about', num: '02' },
   { label: 'Services', path: '/services', num: '03', hasDropdown: true },
   { label: 'Contact', path: '/contact', num: '04' },
-  { label: 'Admin', path: '/admin', num: '05', admin: true },
 ]
 
 const removals = getServicesByCategory('removals')

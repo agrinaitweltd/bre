@@ -66,3 +66,63 @@
     font-size: 0.95rem;
   }
 }
+
+/* Admin Sign-in Form Styles */
+.admin-signin-form {
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  background: #f7fafd;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.admin-form-group label {
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+.admin-form-group input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.2s;
+}
+.admin-form-group input:focus {
+  border: 1.5px solid #3182ce;
+  outline: none;
+}
+.admin-signin-btn {
+  background: #1a2233;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.admin-signin-btn:hover {
+  background: #2d3748;
+}
+.admin-error {
+  color: #e53e3e;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+  text-align: center;
+}
