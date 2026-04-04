@@ -103,22 +103,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 }
 .admin-login-avatar {
   width: 44px;
   height: 44px;
   background: #fff;
   border-radius: 50%;
-  border: 5px solid #1e90ff;
+  border: 7px solid #2de2e6;
   margin-bottom: 18px;
   margin-top: -38px;
+  box-shadow: 0 2px 8px rgba(46, 196, 255, 0.08);
 }
 .admin-login-title {
-  font-size: 2.1rem;
+  font-size: 2.3rem;
   font-weight: 700;
-  color: #222;
+  color: #111;
   margin-bottom: 28px;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 .admin-signin-form {
   width: 100%;
@@ -135,19 +138,22 @@
 .admin-input-wrapper {
   display: flex;
   align-items: center;
-  background: #f6f8fa;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 7px;
-  padding: 0 12px;
+  background: #fff;
+  border: none;
+  border-bottom: 2px solid #e2e8f0;
+  border-radius: 0;
+  padding: 0 0 0 0;
   transition: border 0.2s;
+  margin-bottom: 2px;
 }
 .admin-input-wrapper:focus-within {
-  border: 1.5px solid #1e90ff;
+  border-bottom: 2px solid #1e90ff;
 }
-.admin-input-icon {
-  color: #1e90ff;
-  font-size: 1.2rem;
+.admin-input-svg {
   margin-right: 8px;
+  min-width: 20px;
+  min-height: 20px;
+  display: inline-block;
 }
 .admin-form-group input {
   border: none;
@@ -156,22 +162,28 @@
   font-size: 1.08rem;
   width: 100%;
   outline: none;
+  color: #222;
+}
+.admin-form-group input::placeholder {
+  color: #b0b7c3;
+  font-size: 1.05rem;
 }
 .admin-signin-btn {
-  background: #1e90ff;
+  background: #185afc;
   color: #fff;
   font-weight: 600;
   border: none;
-  border-radius: 7px;
-  padding: 13px 0;
-  font-size: 1.1rem;
+  border-radius: 10px;
+  padding: 15px 0;
+  font-size: 1.15rem;
   cursor: pointer;
   margin-top: 8px;
   transition: background 0.2s;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(24,90,252,0.08);
 }
 .admin-signin-btn:hover {
-  background: #1769c7;
+  background: #0d3ea8;
 }
 .admin-error {
   color: #e53e3e;
@@ -188,13 +200,13 @@
   margin-top: 8px;
 }
 .admin-login-link {
-  color: #1e90ff;
+  color: #185afc;
   font-size: 1rem;
   text-decoration: none;
   transition: color 0.2s;
 }
 .admin-login-link:hover {
-  color: #1769c7;
+  color: #0d3ea8;
   text-decoration: underline;
 }
 .admin-login-link--muted {
@@ -202,6 +214,7 @@
   font-size: 0.98rem;
   margin-top: 6px;
   display: inline-block;
+  cursor: default;
 }
 .admin-sr-only {
   position: absolute;

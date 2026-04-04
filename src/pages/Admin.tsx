@@ -9,7 +9,7 @@ const bookings = [
 ];
 
 const ADMIN_USER = "admin";
-const ADMIN_PASS = "password";
+const ADMIN_PASS = "Ollya1#234";
 
 const Admin: React.FC = () => {
   const [signedIn, setSignedIn] = useState(false);
@@ -34,19 +34,19 @@ const Admin: React.FC = () => {
         <div className="admin-login-card">
           <div className="admin-login-avatar"></div>
           <h1 className="admin-login-title">Login</h1>
-          <form className="admin-signin-form" onSubmit={handleSignIn}>
+          <form className="admin-signin-form" onSubmit={handleSignIn} autoComplete="off">
             <div className="admin-form-group">
               <label htmlFor="username" className="admin-sr-only">Email</label>
               <div className="admin-input-wrapper">
-                <span className="admin-input-icon">📧</span>
-                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Email" autoFocus />
+                <svg className="admin-input-svg" width="20" height="20" fill="none" stroke="#1e90ff" strokeWidth="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4"/><path d="M6 7l6 5 6-5"/></svg>
+                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="audrey_weimann@anissa.org" autoFocus autoComplete="username" />
               </div>
             </div>
             <div className="admin-form-group">
               <label htmlFor="password" className="admin-sr-only">Password</label>
               <div className="admin-input-wrapper">
-                <span className="admin-input-icon">🔒</span>
-                <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" />
+                <svg className="admin-input-svg" width="20" height="20" fill="none" stroke="#b0b7c3" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" autoComplete="current-password" />
               </div>
             </div>
             {error && <div className="admin-error">{error}</div>}
@@ -55,7 +55,7 @@ const Admin: React.FC = () => {
           <div className="admin-login-links">
             <a href="#" className="admin-login-link">or Sign Up</a>
             <br />
-            <a href="#" className="admin-login-link admin-login-link--muted">forgot password?</a>
+            <span className="admin-login-link admin-login-link--muted">forgot password?</span>
           </div>
         </div>
       </div>
