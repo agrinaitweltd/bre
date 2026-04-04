@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
-import PinkCookieConsent from './components/PinkCookieConsent'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import ServiceDetail from './pages/ServiceDetail'
@@ -27,7 +26,6 @@ function App() {
         </Routes>
       </main>
       <Footer />
-      <PinkCookieConsent />
       <CookieConsent />
     </>
   )
