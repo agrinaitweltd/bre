@@ -25,6 +25,7 @@ const Admin: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [selectedSection, setSelectedSection] = useState("Dashboard");
 
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +72,116 @@ const Admin: React.FC = () => {
     );
   }
 
+  // Section content rendering
+  let mainContent;
+  if (selectedSection === "Dashboard") {
+    mainContent = (
+      <>
+        <div className="admin-main-header">
+          <div>
+            <div className="admin-welcome">Welcome back, Admin 👋</div>
+            <h1 className="admin-dashboard-title">Dashboard</h1>
+          </div>
+          <div className="admin-profile">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" className="admin-profile-img" />
+            <span className="admin-profile-name">Admin</span>
+          </div>
+        </div>
+        <div className="admin-dashboard-cards">
+          <div className="admin-dashboard-cardbox gradient-card">
+            <div className="admin-dashboard-cardtitle">Total Bookings</div>
+            <div className="admin-dashboard-cardvalue">{bookings.length}</div>
+          </div>
+          <div className="admin-dashboard-cardbox gradient-card">
+            <div className="admin-dashboard-cardtitle">Upcoming</div>
+            <div className="admin-dashboard-cardvalue">{bookings.filter(b => new Date(b.date) >= new Date()).length}</div>
+          </div>
+          <div className="admin-dashboard-cardbox gradient-card">
+            <div className="admin-dashboard-cardtitle">Contacts</div>
+            <div className="admin-dashboard-cardvalue">{bookings.length}</div>
+          </div>
+          <div className="admin-dashboard-cardbox gradient-card">
+            <div className="admin-dashboard-cardtitle">Revenue</div>
+            <div className="admin-dashboard-cardvalue">$0</div>
+          </div>
+        </div>
+        <div className="admin-dashboard-tablecard">
+          <div className="admin-dashboard-tableheader">Recent Bookings</div>
+          <table className="admin-dashboard-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th>Service</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking) => (
+                <tr key={booking.id}>
+                  <td>{booking.name}</td>
+                  <td>{booking.email}</td>
+                  <td>{booking.phone}</td>
+                  <td>{booking.date}</td>
+                  <td>{booking.service}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  } else if (selectedSection === "Bookings") {
+    mainContent = (
+      <div className="admin-section-card">
+        <h2>All Bookings</h2>
+        <table className="admin-dashboard-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Date</th>
+              <th>Service</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookings.map((booking) => (
+              <tr key={booking.id}>
+                <td>{booking.name}</td>
+                <td>{booking.email}</td>
+                <td>{booking.phone}</td>
+                <td>{booking.date}</td>
+                <td>{booking.service}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  } else if (selectedSection === "Contacts") {
+    mainContent = (
+      <div className="admin-section-card">
+        <h2>Contacts</h2>
+        <ul>
+          {bookings.map((booking) => (
+            <li key={booking.id} style={{ marginBottom: '12px' }}>
+              <strong>{booking.name}</strong> — {booking.email} — {booking.phone}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    mainContent = (
+      <div className="admin-section-card">
+        <h2>{selectedSection}</h2>
+        <p>Section coming soon.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-dashboard-bg">
       <div className="admin-dashboard-card">
@@ -78,7 +189,14 @@ const Admin: React.FC = () => {
           <div className="admin-sidebar-header">AdminPro</div>
           <nav className="admin-sidebar-nav">
             {sidebarLinks.map(link => (
-              <div key={link.label} className={`admin-sidebar-link${link.label === 'Dashboard' ? ' active' : ''}`}>
+              <div
+                key={link.label}
+                className={`admin-sidebar-link${selectedSection === link.label ? ' active' : ''}`}
+                onClick={() => setSelectedSection(link.label)}
+                tabIndex={0}
+                role="button"
+                aria-pressed={selectedSection === link.label}
+              >
                 <span className="admin-sidebar-icon">{link.icon}</span>
                 <span>{link.label}</span>
               </div>
@@ -86,59 +204,7 @@ const Admin: React.FC = () => {
           </nav>
         </aside>
         <main className="admin-main">
-          <div className="admin-main-header">
-            <div>
-              <div className="admin-welcome">Welcome back, Admin 👋</div>
-              <h1 className="admin-dashboard-title">Dashboard</h1>
-            </div>
-            <div className="admin-profile">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" className="admin-profile-img" />
-              <span className="admin-profile-name">Admin</span>
-            </div>
-          </div>
-          <div className="admin-dashboard-cards">
-            <div className="admin-dashboard-cardbox">
-              <div className="admin-dashboard-cardtitle">Total Bookings</div>
-              <div className="admin-dashboard-cardvalue">{bookings.length}</div>
-            </div>
-            <div className="admin-dashboard-cardbox">
-              <div className="admin-dashboard-cardtitle">Upcoming</div>
-              <div className="admin-dashboard-cardvalue">{bookings.filter(b => new Date(b.date) >= new Date()).length}</div>
-            </div>
-            <div className="admin-dashboard-cardbox">
-              <div className="admin-dashboard-cardtitle">Contacts</div>
-              <div className="admin-dashboard-cardvalue">{bookings.length}</div>
-            </div>
-            <div className="admin-dashboard-cardbox">
-              <div className="admin-dashboard-cardtitle">Revenue</div>
-              <div className="admin-dashboard-cardvalue">$0</div>
-            </div>
-          </div>
-          <div className="admin-dashboard-tablecard">
-            <div className="admin-dashboard-tableheader">Recent Bookings</div>
-            <table className="admin-dashboard-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Date</th>
-                  <th>Service</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bookings.map((booking) => (
-                  <tr key={booking.id}>
-                    <td>{booking.name}</td>
-                    <td>{booking.email}</td>
-                    <td>{booking.phone}</td>
-                    <td>{booking.date}</td>
-                    <td>{booking.service}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {mainContent}
         </main>
       </div>
     </div>
