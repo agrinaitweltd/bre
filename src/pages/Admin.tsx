@@ -29,20 +29,35 @@ const Admin: React.FC = () => {
 
   if (!signedIn) {
     return (
-      <div className="admin-container">
-        <h1 className="admin-title">Admin Sign In</h1>
-        <form className="admin-signin-form" onSubmit={handleSignIn}>
-          <div className="admin-form-group">
-            <label htmlFor="username">Username</label>
-            <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} autoFocus />
+      <div className="admin-login-bg">
+        <div className="admin-login-abstract" aria-hidden="true"></div>
+        <div className="admin-login-card">
+          <div className="admin-login-avatar"></div>
+          <h1 className="admin-login-title">Login</h1>
+          <form className="admin-signin-form" onSubmit={handleSignIn}>
+            <div className="admin-form-group">
+              <label htmlFor="username" className="admin-sr-only">Email</label>
+              <div className="admin-input-wrapper">
+                <span className="admin-input-icon">📧</span>
+                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Email" autoFocus />
+              </div>
+            </div>
+            <div className="admin-form-group">
+              <label htmlFor="password" className="admin-sr-only">Password</label>
+              <div className="admin-input-wrapper">
+                <span className="admin-input-icon">🔒</span>
+                <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" />
+              </div>
+            </div>
+            {error && <div className="admin-error">{error}</div>}
+            <button className="admin-signin-btn" type="submit">Login</button>
+          </form>
+          <div className="admin-login-links">
+            <a href="#" className="admin-login-link">or Sign Up</a>
+            <br />
+            <a href="#" className="admin-login-link admin-login-link--muted">forgot password?</a>
           </div>
-          <div className="admin-form-group">
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-          </div>
-          {error && <div className="admin-error">{error}</div>}
-          <button className="admin-signin-btn" type="submit">Sign In</button>
-        </form>
+        </div>
       </div>
     );
   }
