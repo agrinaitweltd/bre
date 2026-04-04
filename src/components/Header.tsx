@@ -85,10 +85,6 @@ export default function Header() {
             ))}
           </nav>
 
-          <Link to="/contact" className="btn header__cta">
-            GET A QUOTE
-          </Link>
-
           <button
             className={`header__burger${menuOpen ? ' header__burger--open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -139,12 +135,6 @@ export default function Header() {
               </div>
             ))}
           </nav>
-          <div className="header__mobile-cta" style={{ transitionDelay: `${menuOpen ? navLinks.length * 80 + 200 : 0}ms` }}>
-            <Link to="/contact" className="btn header__mobile-quote" onClick={() => setMenuOpen(false)}>
-              GET A FREE QUOTE
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </Link>
-          </div>
         </div>
       </div>
     </>

@@ -12,12 +12,12 @@ const ADMIN_USER = "admin";
 const ADMIN_PASS = "Ollya1#234";
 
 const sidebarLinks = [
-  { icon: "🏠", label: "Dashboard" },
-  { icon: "📋", label: "Bookings" },
-  { icon: "👤", label: "Contacts" },
-  { icon: "📊", label: "Statistics" },
-  { icon: "📅", label: "Calendar" },
-  { icon: "💰", label: "Finance" },
+  { label: "Dashboard" },
+  { label: "Bookings" },
+  { label: "Contacts" },
+  { label: "Statistics" },
+  { label: "Calendar" },
+  { label: "Finance" },
 ];
 
 const Admin: React.FC = () => {
@@ -197,7 +197,6 @@ const Admin: React.FC = () => {
                 role="button"
                 aria-pressed={selectedSection === link.label}
               >
-                <span className="admin-sidebar-icon">{link.icon}</span>
                 <span>{link.label}</span>
               </div>
             ))}
