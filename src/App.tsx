@@ -8,6 +8,7 @@ import ServiceDetail from './pages/ServiceDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
+import React, { Suspense } from 'react';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Suspense fallback={<div>Loading...</div>}><Admin /></Suspense>} />
         </Routes>
       </main>
       <Footer />
@@ -30,3 +32,6 @@ function App() {
 }
 
 export default App
+
+// Lazy load Admin page
+const Admin = React.lazy(() => import('./pages/Admin'));
