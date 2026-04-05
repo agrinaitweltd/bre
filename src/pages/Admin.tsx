@@ -66,7 +66,7 @@ const Admin: React.FC = () => {
           <div className="admin-sidebar-header">Luxury Admin</div>
           <nav className="admin-sidebar-nav">
             {sidebarLinks.map((link) => (
-              <div
+              <button
                 key={link.label}
                 className={`admin-sidebar-link${
                   selectedSection === link.label ? " active" : ""
@@ -74,13 +74,36 @@ const Admin: React.FC = () => {
                 onClick={() => setSelectedSection(link.label)}
               >
                 {link.label}
-              </div>
+              </button>
             ))}
           </nav>
         </aside>
         <main className="admin-main">
-          <h1>Welcome to the Luxury Admin Dashboard</h1>
-          <p>No data available.</p>
+          <div className="admin-main-top">
+            <div>
+              <p className="admin-subtitle">Welcome back</p>
+              <h1 className="admin-heading">Luxury Admin Dashboard</h1>
+            </div>
+            <div className="admin-profile-pill">Admin</div>
+          </div>
+          <div className="admin-panels">
+            <div className="admin-panel">
+              <div className="admin-panel-title">Bookings</div>
+              <div className="admin-panel-value">—</div>
+            </div>
+            <div className="admin-panel">
+              <div className="admin-panel-title">Upcoming</div>
+              <div className="admin-panel-value">—</div>
+            </div>
+            <div className="admin-panel">
+              <div className="admin-panel-title">Revenue</div>
+              <div className="admin-panel-value">—</div>
+            </div>
+          </div>
+          <section className="admin-empty-state">
+            <h2>No active data</h2>
+            <p>The dashboard is styled for luxury and ready for your content.</p>
+          </section>
         </main>
       </div>
     </div>
