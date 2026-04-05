@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import "./Admin.css";
-
-// Mock booking data (replace with Supabase fetch later)
-const bookings = [
-  { id: 1, name: "Alice Smith", email: "alice@example.com", phone: "555-1234", date: "2026-04-01", service: "Consultation" },
-  { id: 2, name: "Bob Jones", email: "bob@example.com", phone: "555-5678", date: "2026-04-02", service: "Therapy" },
-  { id: 3, name: "Charlie Lee", email: "charlie@example.com", phone: "555-9012", date: "2026-04-03", service: "Coaching" },
-];
-
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "Ollya1#234";
+import { createClient } from "../utils/supabase/client";
 
 const sidebarLinks = [
   { label: "Dashboard" },
@@ -26,15 +17,39 @@ const Admin: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [selectedSection, setSelectedSection] = useState("Dashboard");
+  const [adminUser, setAdminUser] = useState<any>(null);
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-      setSignedIn(true);
-      setError("");
-    } else {
-      setError("Invalid credentials");
+    setLoading(true);
+    setError("");
+    const supabase = createClient();
+    // Find admin user by email
+    const { data: user, error: userError } = await supabase
+      .from("admin")
+      .select("*")
+      .eq("email", username)
+      .single();
+    if (userError || !user) {
+      setError("Admin user not found");
+      setLoading(false);
+      return;
     }
+    // Check password (plaintext for demo; use hashing in production)
+    if (user.password !== password) {
+      setError("Invalid password");
+      setLoading(false);
+      return;
+    }
+    setAdminUser(user);
+    setSignedIn(true);
+    setError("");
+    // Fetch bookings from Supabase
+    const { data: bookingsData } = await supabase.from("booking").select("*");
+    setBookings(bookingsData || []);
+    setLoading(false);
   };
 
   if (!signedIn) {
@@ -49,7 +64,7 @@ const Admin: React.FC = () => {
               <label htmlFor="username" className="admin-sr-only">Email</label>
               <div className="admin-input-wrapper">
                 <svg className="admin-input-svg" width="20" height="20" fill="none" stroke="#1e90ff" strokeWidth="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="4"/><path d="M6 7l6 5 6-5"/></svg>
-                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="audrey_weimann@anissa.org" autoFocus autoComplete="username" />
+                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="admin@email.com" autoFocus autoComplete="username" />
               </div>
             </div>
             <div className="admin-form-group">
@@ -60,7 +75,7 @@ const Admin: React.FC = () => {
               </div>
             </div>
             {error && <div className="admin-error">{error}</div>}
-            <button className="admin-signin-btn" type="submit">Login</button>
+            <button className="admin-signin-btn" type="submit" disabled={loading}>{loading ? "Signing in..." : "Login"}</button>
           </form>
           <div className="admin-login-links">
             <a href="#" className="admin-login-link">or Sign Up</a>
@@ -84,7 +99,7 @@ const Admin: React.FC = () => {
           </div>
           <div className="admin-profile">
             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" className="admin-profile-img" />
-            <span className="admin-profile-name">Admin</span>
+            <span className="admin-profile-name">{adminUser?.email || "Admin"}</span>
           </div>
         </div>
         <div className="admin-dashboard-cards">
@@ -94,7 +109,7 @@ const Admin: React.FC = () => {
           </div>
           <div className="admin-dashboard-cardbox gradient-card">
             <div className="admin-dashboard-cardtitle">Upcoming</div>
-            <div className="admin-dashboard-cardvalue">{bookings.filter(b => new Date(b.date) >= new Date()).length}</div>
+            <div className="admin-dashboard-cardvalue">{bookings.filter(b => new Date(b.booking_date) >= new Date()).length}</div>
           </div>
           <div className="admin-dashboard-cardbox gradient-card">
             <div className="admin-dashboard-cardtitle">Contacts</div>
@@ -120,10 +135,10 @@ const Admin: React.FC = () => {
             <tbody>
               {bookings.map((booking) => (
                 <tr key={booking.id}>
-                  <td>{booking.name}</td>
-                  <td>{booking.email}</td>
-                  <td>{booking.phone}</td>
-                  <td>{booking.date}</td>
+                  <td>{booking.user_email}</td>
+                  <td>{booking.user_email}</td>
+                  <td>-</td>
+                  <td>{booking.booking_date}</td>
                   <td>{booking.service}</td>
                 </tr>
               ))}
@@ -149,10 +164,10 @@ const Admin: React.FC = () => {
           <tbody>
             {bookings.map((booking) => (
               <tr key={booking.id}>
-                <td>{booking.name}</td>
-                <td>{booking.email}</td>
-                <td>{booking.phone}</td>
-                <td>{booking.date}</td>
+                <td>{booking.user_email}</td>
+                <td>{booking.user_email}</td>
+                <td>-</td>
+                <td>{booking.booking_date}</td>
                 <td>{booking.service}</td>
               </tr>
             ))}
@@ -167,7 +182,7 @@ const Admin: React.FC = () => {
         <ul>
           {bookings.map((booking) => (
             <li key={booking.id} style={{ marginBottom: '12px' }}>
-              <strong>{booking.name}</strong> — {booking.email} — {booking.phone}
+              <strong>{booking.user_email}</strong> — {booking.user_email}
             </li>
           ))}
         </ul>
