@@ -39,7 +39,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 140px 0 120px;
+  padding: 160px 0 120px;
   min-height: calc(100vh - 100px);
 }
 
