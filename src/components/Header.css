@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 /* ========== Header Core ========== */
 .header {
   position: fixed;
@@ -24,7 +26,7 @@
 .header__inner {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 80px;
   max-width: 1200px;
   margin: 0 auto;
@@ -49,9 +51,8 @@
 .header__nav-desktop {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 64px;
-  flex: 1;
+  justify-content: flex-end;
+  gap: 48px;
 }
 
 .header__nav-item {
@@ -62,52 +63,49 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--primary-dark);
-  padding: 8px 18px;
-  border-radius: 18px;
-  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  padding: 8px 0;
+  border-radius: 0;
+  transition: color 0.2s;
+  position: relative;
 }
 
 .header__chevron {
   transition: transform var(--transition);
 }
 
+.header__link:hover,
+.header__link--active {
+  color: var(--primary);
+}
+
 .header__link::after {
   content: '';
   position: absolute;
   bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 0;
   height: 2px;
-  background: #fff;
+  background: currentColor;
   transition: width var(--transition);
-}
-
-.header__link:hover,
-.header__link--active {
-  color: var(--white);
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  box-shadow: 0 2px 16px var(--primary-light);
 }
 
 .header__link--active::after,
 .header__link:hover::after {
-  width: 24px;
+  width: 100%;
 }
 
 .header--scrolled .header__link {
-  color: #b85fa2;
+  color: var(--text);
 }
 
 .header--scrolled .header__link--active,
 .header--scrolled .header__link:hover {
-  color: #fff;
-  background: linear-gradient(90deg, #ff5fa2 0%, #ffb6ea 100%);
+  color: var(--primary);
 }
 
 .header--scrolled .header__link::after {
@@ -428,5 +426,3 @@
   }
 }
 
-/* Luxury and pink accent improvements */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
