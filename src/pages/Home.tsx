@@ -56,7 +56,7 @@ export default function Home() {
           </p>
           <div className="services-grid stagger-children">
             {services.map((s) => (
-              <ServiceCard key={s.slug} title={s.title} img={s.img} desc={s.desc} slug={s.slug} />
+              <ServiceCard key={s.slug} title={s.title} desc={s.desc} slug={s.slug} />
             ))}
           </div>
           <div className="services-cta fade-in">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { services, getServicesByCategory } from '../data/services'
+import { getServicesByGroup } from '../data/services'
 import './Header.css'
 
 const navLinks = [
@@ -10,9 +10,8 @@ const navLinks = [
   { label: 'Contact', path: '/contact', num: '04' },
 ]
 
-const removals = getServicesByCategory('removals')
-const specialist = getServicesByCategory('specialist')
-const support = getServicesByCategory('support')
+const homeServices = getServicesByGroup('home')
+const businessServices = getServicesByGroup('business')
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -61,20 +60,14 @@ export default function Header() {
                   <div className="header__dropdown">
                     <div className="header__dropdown-inner">
                       <div className="header__dropdown-col">
-                        <span className="header__dropdown-heading">Removals</span>
-                        {removals.map((s) => (
+                        <span className="header__dropdown-heading">For Homes & Individuals</span>
+                        {homeServices.map((s: any) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
                         ))}
                       </div>
                       <div className="header__dropdown-col">
-                        <span className="header__dropdown-heading">Specialist</span>
-                        {specialist.map((s) => (
-                          <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
-                        ))}
-                      </div>
-                      <div className="header__dropdown-col">
-                        <span className="header__dropdown-heading">Support</span>
-                        {support.map((s) => (
+                        <span className="header__dropdown-heading">For Businesses</span>
+                        {businessServices.map((s: any) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
                         ))}
                       </div>

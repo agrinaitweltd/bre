@@ -1,6 +1,3 @@
-import { useInView } from '../hooks/useInView'
-import { Link } from 'react-router-dom'
-
 import { getServicesByGroup, type ServiceData } from '../data/services'
 import { useInView } from '../hooks/useInView'
 import { Link } from 'react-router-dom'
