@@ -64,14 +64,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primary-dark);
   padding: 10px 0;
   border-radius: 0;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
   position: relative;
 }
 
@@ -82,7 +82,7 @@
 .header__link:hover,
 .header__link--active {
   color: var(--primary);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .header__link::after {
@@ -117,10 +117,10 @@
 /* ========== Desktop Dropdown ========== */
 .header__dropdown {
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 50%;
-  transform: translateX(-50%) translateY(18px);
-  padding-top: 20px;
+  transform: translateX(-50%) translateY(0);
+  padding: 24px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -142,8 +142,8 @@
 
 .header__dropdown-inner {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.14);
