@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { getServicesByGroup } from '../data/services'
+import { getServicesByGroup, type ServiceData } from '../data/services'
 import './Header.css'
 
 const navLinks = [
@@ -12,6 +12,7 @@ const navLinks = [
 
 const homeServices = getServicesByGroup('home')
 const businessServices = getServicesByGroup('business')
+const allServices = [...homeServices, ...businessServices]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -61,13 +62,13 @@ export default function Header() {
                     <div className="header__dropdown-inner">
                       <div className="header__dropdown-col">
                         <span className="header__dropdown-heading">For Homes & Individuals</span>
-                        {homeServices.map((s: any) => (
+                        {homeServices.map((s: ServiceData) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
                         ))}
                       </div>
                       <div className="header__dropdown-col">
                         <span className="header__dropdown-heading">For Businesses</span>
-                        {businessServices.map((s: any) => (
+                        {businessServices.map((s: ServiceData) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
                         ))}
                       </div>
@@ -117,7 +118,7 @@ export default function Header() {
                 </div>
                 {link.hasDropdown && (
                   <div className={`header__mobile-sub${servicesOpen ? ' header__mobile-sub--open' : ''}`}>
-                    {services.map((s) => (
+                    {allServices.map((s: ServiceData) => (
                       <Link key={s.slug} to={`/services/${s.slug}`} className="header__mobile-sub-link">
                         <span className="header__mobile-sub-chevron">&rsaquo;</span>
                         {s.title}
