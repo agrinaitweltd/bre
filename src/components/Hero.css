@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding-top: 100px;
 }
 
 .hero__bg {
@@ -38,7 +39,8 @@
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 160px 0 120px;
+  padding: 140px 0 120px;
+  min-height: calc(100vh - 100px);
 }
 
 .hero__content {
@@ -91,6 +93,13 @@
   line-height: 1.08;
   margin-bottom: 28px;
   letter-spacing: -0.03em;
+  opacity: 0;
+  animation: heroTitleFadeIn 1s ease-out 0.8s both;
+}
+
+@keyframes heroTitleFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hero__typed {
@@ -142,6 +151,10 @@
   gap: 16px;
   flex-wrap: wrap;
   animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+.hero__button-animation {
+  will-change: transform, opacity;
 }
 
 .hero__btn-quote {

@@ -51,8 +51,9 @@
 .header__nav-desktop {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 48px;
+  flex: 1;
 }
 
 .header__nav-item {
@@ -117,12 +118,14 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
+  transform: translateX(-50%) translateY(18px);
   padding-top: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.25s ease;
   pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  width: min(100vw - 64px, 860px);
+  z-index: 9999;
 }
 
 .header__nav-item--dropdown:hover .header__dropdown {
@@ -138,27 +141,26 @@
 
 .header__dropdown-inner {
   display: grid;
-  grid-template-columns: 1.2fr 1.2fr 0.8fr;
-  gap: 32px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
   background: var(--white);
   border-radius: var(--radius);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-  padding: 32px 36px;
-  min-width: 720px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.14);
+  padding: 36px 40px;
   border: 1px solid var(--border);
 }
 
 .header__dropdown-col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   min-width: 150px;
 }
 
 .header__dropdown-col--cta {
-  padding: 16px;
-  background: rgba(0, 191, 165, 0.05);
-  border-radius: 20px;
+  padding: 20px 18px;
+  background: rgba(0, 191, 165, 0.08);
+  border-radius: 22px;
 }
 
 .header__dropdown-copy {
@@ -185,6 +187,13 @@
   background: var(--primary);
 }
 
+@media (max-width: 1100px) {
+  .header__dropdown-inner {
+    grid-template-columns: 1fr;
+    min-width: auto;
+  }
+}
+
 .header__dropdown-heading {
   font-size: 0.68rem;
   font-weight: 700;
@@ -195,14 +204,15 @@
 }
 
 .header__dropdown-link {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--text-light);
-  padding: 4px 0;
-  transition: color var(--transition);
+  padding: 8px 0;
+  transition: color var(--transition), transform var(--transition);
 }
 
 .header__dropdown-link:hover {
   color: var(--text);
+  transform: translateX(4px);
 }
 
 /* ========== CTA Button ========== */
