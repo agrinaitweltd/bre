@@ -66,7 +66,7 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #e5e0e6;
+  color: var(--primary-dark);
   padding: 8px 18px;
   border-radius: 18px;
   transition: color 0.2s, background 0.2s, box-shadow 0.2s;
@@ -90,9 +90,9 @@
 
 .header__link:hover,
 .header__link--active {
-  color: #fff;
-  background: linear-gradient(90deg, #ff5fa2 0%, #ffb6ea 100%);
-  box-shadow: 0 2px 16px rgba(255,95,162,0.10);
+  color: var(--white);
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  box-shadow: 0 2px 16px var(--primary-light);
 }
 
 .header__link--active::after,

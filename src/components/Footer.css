@@ -34,22 +34,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--secondary-light);
   border-radius: 50%;
   transition: all var(--transition);
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--primary-dark);
 }
 
 .footer__social:hover {
   background: var(--primary);
   color: var(--white);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.08);
 }
 
 .footer__heading {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--primary-light);
   margin-bottom: 20px;
 }
 
@@ -71,7 +71,7 @@
 
 .footer__links a:hover {
   opacity: 1;
-  color: var(--white);
+  color: var(--secondary);
 }
 
 .footer__contact-list li {

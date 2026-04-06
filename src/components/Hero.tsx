@@ -76,7 +76,17 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero__bg" ref={bgRef}>
-        <img src="/hero-moving.jpg" alt="" />
+        <video
+          className="hero__video"
+          src="/vid.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/hero-moving.jpg"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
         <div className="hero__overlay" />
       </div>
       <div className="container hero__inner">
