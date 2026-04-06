@@ -4,9 +4,9 @@ import './Contact.css'
 
 const serviceOptions = [
   'Self-Vehicle Hire', 'Man and Van', 'House Removals', 'Office Removals',
-  'Student Removals', 'Furniture Removals', 'Piano Removals', 'Antique Removals',
-  'Art Removals', 'Packaging Services', 'Storage Services', 'International Removals',
-  'Pet Transportation', 'Other',
+  'Student Removals', 'Furniture Removals',
+  'Art Removals', 'Packaging Services', 'Storage Services',
+  'Other',
 ]
 
 export default function Contact() {

@@ -127,29 +127,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet the Team */}
-      <section className="section home-team" ref={teamRef}>
-        <div className="container">
-          <h2 className="section-title blur-in">Meet the Team</h2>
-          <p className="section-subtitle blur-in">
-            The people behind every successful move — dedicated, experienced, and passionate about what they do.
-          </p>
-          <div className="team-grid stagger-children">
-            {team.map((member) => (
-              <div className="team-card" key={member.name}>
-                <div className="team-card__img">
-                  <img src={member.img} alt={member.name} />
-                </div>
-                <div className="team-card__info">
-                  <h3 className="team-card__name">{member.name}</h3>
-                  <span className="team-card__role">{member.role}</span>
-                  <p className="team-card__desc">{member.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Testimonials */}
       <section className="section home-testimonials" ref={testimonialsRef}>

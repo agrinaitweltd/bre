@@ -339,25 +339,7 @@
   color: var(--white);
 }
 
-/* ========== Home: Meet the Team ========== */
-.home-team {
-  background: var(--white);
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
-.team-card {
-  background: var(--bg);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.team-card:hover {
+/*
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }

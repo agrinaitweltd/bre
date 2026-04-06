@@ -3,7 +3,7 @@ import './Footer.css'
 
 const services = [
   'Man and Van', 'House Removals', 'Office Removals', 'Student Removals',
-  'Piano Removals', 'Storage Services', 'International Removals',
+  'Storage Services',
 ]
 
 const quickLinks = [
