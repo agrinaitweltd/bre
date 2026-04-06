@@ -4,6 +4,8 @@ export interface ServiceData {
   group: 'home' | 'business';
   desc: string;
   details: string;
+  img?: string;
+  bannerImg?: string;
 }
 
 export const services: ServiceData[] = [
