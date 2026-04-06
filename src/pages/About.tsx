@@ -69,6 +69,20 @@ export default function About() {
             <p>
               Choose full-service relocations, DIY van hires, or tailored clearance packages - we adapt to your budget and timeline.
             </p>
+            <div className="about-mission__extra-grid">
+              <div className="about-mission__extra-card">
+                <h4>Professional Training</h4>
+                <p>Every team member receives safety, handling, and customer care training before every job.</p>
+              </div>
+              <div className="about-mission__extra-card">
+                <h4>Local London Expertise</h4>
+                <p>Our crews know London's roads, parking challenges, and building access requirements.</p>
+              </div>
+              <div className="about-mission__extra-card">
+                <h4>Transparent Pricing</h4>
+                <p>Clear quotes, no hidden fees, and honest advice on the best service for your needs.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

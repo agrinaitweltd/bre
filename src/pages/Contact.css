@@ -1,3 +1,48 @@
+/* Contact Banner */
+.page-banner {
+  position: relative;
+  min-height: 46vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.page-banner__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.page-banner__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.page-banner .container {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+.page-banner__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.page-banner__subtitle {
+  font-size: 1.05rem;
+  opacity: 0.95;
+  max-width: 560px;
+}
+
 /* Contact Grid */
 .contact-grid {
   display: grid;

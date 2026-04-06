@@ -25,7 +25,11 @@ export default function Contact() {
 
   return (
     <>
-      <section className="page-banner">
+      <section className="page-banner page-banner--image">
+        <div className="page-banner__bg">
+          <img src="/contact-banner.jpg" alt="Contact banner" />
+          <div className="page-banner__overlay" />
+        </div>
         <div className="container">
           <h1 className="page-banner__title">Contact Us</h1>
           <p className="page-banner__subtitle">

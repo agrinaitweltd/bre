@@ -72,6 +72,13 @@ export default function Header() {
                           <Link key={s.slug} to={`/services/${s.slug}`} className="header__dropdown-link">{s.title}</Link>
                         ))}
                       </div>
+                      <div className="header__dropdown-col header__dropdown-col--cta">
+                        <span className="header__dropdown-heading">Need help choosing?</span>
+                        <p className="header__dropdown-copy">
+                          Our team can recommend the best service for your move, clearance or logistics project.
+                        </p>
+                        <Link to="/contact" className="header__dropdown-cta">Get a quote</Link>
+                      </div>
                     </div>
                   </div>
                 )}

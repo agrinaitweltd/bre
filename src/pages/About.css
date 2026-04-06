@@ -107,6 +107,37 @@
   }
 }
 
+.about-mission__extra-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.about-mission__extra-card {
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+
+.about-mission__extra-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about-mission__extra-card p {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .about-mission__extra-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Values */
 .about-values {
   background: var(--bg);

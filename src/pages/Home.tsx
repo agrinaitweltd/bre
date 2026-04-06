@@ -56,7 +56,7 @@ export default function Home() {
           </p>
           <div className="services-grid stagger-children">
             {services.map((s) => (
-              <ServiceCard key={s.slug} title={s.title} desc={s.desc} slug={s.slug} />
+              <ServiceCard key={s.slug} title={s.title} img={s.img} desc={s.desc} slug={s.slug} />
             ))}
           </div>
           <div className="services-cta fade-in">
@@ -73,30 +73,38 @@ export default function Home() {
           </div>
           <div className="home-about__content slide-in-right">
             <h2 className="home-about__title">WHY CHOOSE US?</h2>
-            <ul className="home-about__list">
-              <li>✔ Unmatched Reliability</li>
-              <li>Public Liability & Goods-in-Transit Insurance</li>
-              <li>Serving London & Surrounding Areas</li>
-              <li>Ο Modern Fleet & Equipment</li>
-              <li>Ο Stress-Free End of Tenancy<br />Leave properties spotless and inspection-ready.</li>
-            </ul>
-            <h3 className="home-about__subtitle">Social Impact: Teamwork Makes The Dream Work</h3>
+            <div className="home-about__badge-list">
+              <span>✔ Unmatched Reliability</span>
+              <span>Public Liability & Goods-in-Transit Insurance</span>
+              <span>Serving London & Surrounding Areas</span>
+              <span>Ο Modern Fleet & Equipment</span>
+              <span>Ο Stress-Free End of Tenancy — leave properties spotless and inspection-ready.</span>
+            </div>
+            <div className="home-about__cards">
+              <div className="home-about__card">
+                <h3>Social Impact</h3>
+                <p>
+                  Teamwork Makes The Dream Work. With 11.6% youth unemployment in the UK (2023), every move or clearance job you book creates opportunities.
+                </p>
+                <p>
+                  We hire and train young people not in education, employment, or training (NEET), prioritising those facing systemic barriers or seeking a fresh start.
+                </p>
+              </div>
+              <div className="home-about__card home-about__card--accent">
+                <h3>The Breezyeers Advantage</h3>
+                <p>
+                  Our workforce isn't just strong — they're driven, skilled, and safety-trained. Hire Breezyeers for:
+                </p>
+                <ul>
+                  <li>Heavy lifting</li>
+                  <li>Packing/unpacking</li>
+                  <li>End-of-tenancy clean-ups</li>
+                  <li>Short-term project support</li>
+                </ul>
+              </div>
+            </div>
             <p className="home-about__text">
-              With 11.6% youth unemployment in the UK (2023), every move or clearance job you book creates opportunities. We hire and train young people not in education, employment, or training (NEET), prioritising those facing systemic barriers or seeking a fresh start. By investing in their potential, we're tackling unemployment and fostering inclusive growth.
-            </p>
-            <h3 className="home-about__subtitle">The Breezyeers Advantage</h3>
-            <p className="home-about__text">
-              Our workforce isn't just strong - they're driven, skilled, and safety-trained. Need extra hands? Hire Breezyeers for:
-            </p>
-            <ul className="home-about__list">
-              <li>Heavy lifting</li>
-              <li>Packing/unpacking</li>
-              <li>End-of-tenancy clean-ups</li>
-              <li>Short-term project support</li>
-            </ul>
-            <h3 className="home-about__subtitle">Cost-Effective Flexibility</h3>
-            <p className="home-about__text">
-              Choose full-service relocations, DIY van hires, or tailored clearance packages - we adapt to your budget and timeline.
+              Choose full-service relocations, DIY van hires, or tailored clearance packages — we adapt to your budget and timeline.
             </p>
             <Link to="/about" className="btn btn-primary">Learn More About Us</Link>
           </div>

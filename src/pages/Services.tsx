@@ -14,6 +14,9 @@ function ServiceGroup({ title, services }: { title: string; services: ServiceDat
       <div className="service-group__grid">
         {services.map((s, i) => (
           <Link to={`/services/${s.slug}`} className="service-item fade-in" key={s.slug} style={{ transitionDelay: `${i * 80}ms` }}>
+            <div className="service-item__icon-wrap">
+              {s.img ? <img src={s.img} alt={s.title} loading="lazy" /> : <div className="service-item__icon-placeholder" />}
+            </div>
             <div className="service-item__body">
               <h3>{s.title}</h3>
               <p>{s.desc}</p>

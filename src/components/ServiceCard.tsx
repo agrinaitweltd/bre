@@ -11,11 +11,13 @@ interface ServiceCardProps {
 export default function ServiceCard({ title, img, desc, slug }: ServiceCardProps) {
   return (
     <Link to={`/services/${slug}`} className="service-card">
-      {img ? (
-        <div className="service-card__img">
-          <img src={img} alt={title} loading="lazy" />
-        </div>
-      ) : null}
+      <div className="service-card__icon-wrap">
+        {img ? (
+          <img src={img} alt={title} className="service-card__icon" loading="lazy" />
+        ) : (
+          <div className="service-card__icon-placeholder" />
+        )}
+      </div>
       <div className="service-card__body">
         <h3 className="service-card__title">{title}</h3>
         <p className="service-card__desc">{desc}</p>
