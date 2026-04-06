@@ -7,11 +7,10 @@ import { services } from '../data/services'
 import './Home.css'
 
 const whyUs = [
-  { icon: 'shield', title: 'Trusted Movers', desc: 'Fully insured and vetted professionals you can rely on.' },
-  { icon: 'tag', title: 'Affordable Pricing', desc: 'Competitive rates with no hidden fees or surprise charges.' },
-  { icon: 'hand', title: 'Careful Handling', desc: 'Every item treated with the utmost care and attention.' },
-  { icon: 'calendar', title: 'Flexible Scheduling', desc: 'Move on your terms — evenings, weekends, and short notice.' },
-  { icon: 'heart', title: 'Community Mission', desc: 'A social enterprise giving back to London communities.' },
+  { icon: 'shield', title: 'Fully Insured & Reliable', desc: 'All work is backed by comprehensive insurance and our quality guarantee.' },
+  { icon: 'hand', title: 'Skilled Professionals', desc: 'Our experienced team delivers every move with care and precision.' },
+  { icon: 'tag', title: 'Transparent Pricing', desc: 'Fair, competitive quotes with no hidden fees or surprise charges.' },
+  { icon: 'calendar', title: 'Swift Turnaround', desc: 'We respect your time and complete jobs efficiently without compromising quality.' },
 ]
 
 const steps = [
@@ -65,48 +64,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About / Why Choose Us Section */}
-      <section className="section home-about" ref={aboutRef}>
-        <div className="container home-about__inner">
-          <div className="home-about__image rotate-in">
+      {/* About Breezyee Section */}
+      <section className="section home-about-breezyee" ref={aboutRef}>
+        <div className="container home-about-breezyee__inner">
+          <div className="home-about-breezyee__image rotate-in">
             <img src="/about-impact.jpg" alt="Community impact" />
+            <div className="home-about-breezyee__stat">
+              <strong>5+</strong>
+              <span>Years of excellence</span>
+            </div>
           </div>
-          <div className="home-about__content slide-in-right">
-            <h2 className="home-about__title">WHY CHOOSE US?</h2>
-            <div className="home-about__badge-list">
-              <span>✔ Unmatched Reliability</span>
-              <span>Public Liability & Goods-in-Transit Insurance</span>
-              <span>Serving London & Surrounding Areas</span>
-              <span>Ο Modern Fleet & Equipment</span>
-              <span>Ο Stress-Free End of Tenancy — leave properties spotless and inspection-ready.</span>
-            </div>
-            <div className="home-about__cards">
-              <div className="home-about__card">
-                <h3>Social Impact</h3>
-                <p>
-                  Teamwork Makes The Dream Work. With 11.6% youth unemployment in the UK (2023), every move or clearance job you book creates opportunities.
-                </p>
-                <p>
-                  We hire and train young people not in education, employment, or training (NEET), prioritising those facing systemic barriers or seeking a fresh start.
-                </p>
-              </div>
-              <div className="home-about__card home-about__card--accent">
-                <h3>The Breezyeers Advantage</h3>
-                <p>
-                  Our workforce isn't just strong — they're driven, skilled, and safety-trained. Hire Breezyeers for:
-                </p>
-                <ul>
-                  <li>Heavy lifting</li>
-                  <li>Packing/unpacking</li>
-                  <li>End-of-tenancy clean-ups</li>
-                  <li>Short-term project support</li>
-                </ul>
-              </div>
-            </div>
-            <p className="home-about__text">
-              Choose full-service relocations, DIY van hires, or tailored clearance packages — we adapt to your budget and timeline.
+          <div className="home-about-breezyee__content slide-in-right">
+            <span className="home-about-breezyee__eyebrow">ABOUT BREEZYEE</span>
+            <h2 className="home-about-breezyee__title">Built on trust, delivered with pride.</h2>
+            <p className="home-about-breezyee__text">
+              Breezyee Moves is a London-based removal service combining professional care with genuine social impact. Every assignment is handled with precision, reliability and a focus on protecting your belongings.
             </p>
-            <Link to="/about" className="btn btn-primary">Learn More About Us</Link>
+            <p className="home-about-breezyee__text">
+              We support local communities by training and employing young people who are not in education, employment, or training, while delivering a seamless moving experience from start to finish.
+            </p>
+            <Link to="/about" className="btn btn-primary">Read Our Story</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="section home-why-choose" ref={whyRef}>
+        <div className="container">
+          <span className="section-eyebrow">WHY CHOOSE US?</span>
+          <h2 className="section-title">The standard you deserve</h2>
+          <p className="section-subtitle">
+            We hold ourselves to the highest professional standards so you never have to compromise on quality, reliability or value.
+          </p>
+          <div className="why-grid stagger-children">
+            {whyUs.map((item) => (
+              <div className="why-card" key={item.title}>
+                <span className="why-card__icon"><Icon name={item.icon} /></span>
+                <h3 className="why-card__title">{item.title}</h3>
+                <p className="why-card__desc">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -14,6 +14,173 @@
   margin-top: 40px;
 }
 
+/* ========== Home: About Breezyee ========== */
+.home-about-breezyee {
+  background: var(--white);
+}
+
+.home-about-breezyee__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.home-about-breezyee__image {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.home-about-breezyee__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 420px;
+}
+
+.home-about-breezyee__stat {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background: var(--white);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 18px 22px;
+  box-shadow: var(--shadow);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home-about-breezyee__stat strong {
+  font-size: 2rem;
+  display: block;
+}
+
+.home-about-breezyee__stat span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-light);
+}
+
+.home-about-breezyee__content {
+  padding-right: 8px;
+}
+
+.home-about-breezyee__eyebrow {
+  display: inline-flex;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: 0.75rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.home-about-breezyee__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 22px;
+  line-height: 1.05;
+}
+
+.home-about-breezyee__text {
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.home-about-breezyee__content .btn {
+  margin-top: 16px;
+}
+
+/* ========== Home: Why Choose Us ========== */
+.home-why-choose {
+  background: var(--bg);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.home-why-choose .section-title {
+  margin-bottom: 16px;
+}
+
+.home-why-choose .section-subtitle {
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+
+.home-why-choose .why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.home-why-choose .why-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 32px 24px;
+  box-shadow: var(--shadow);
+  transition: all 0.35s ease;
+}
+
+.home-why-choose .why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.home-why-choose .why-card__icon {
+  margin-bottom: 20px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--primary-light);
+}
+
+.home-why-choose .why-card__title {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.home-why-choose .why-card__desc {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .home-about-breezyee__inner,
+  .home-why-choose .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-about-breezyee__image img {
+    min-height: 260px;
+  }
+
+  .home-about-breezyee__stat {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
 /* ========== Home: About ========== */
 .home-about {
   background: var(--white);
