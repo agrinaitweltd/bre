@@ -63,15 +63,15 @@
 .header__link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  gap: 6px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--primary-dark);
-  padding: 8px 0;
+  padding: 10px 0;
   border-radius: 0;
-  transition: color 0.2s;
+  transition: color 0.25s ease, transform 0.25s ease;
   position: relative;
 }
 
@@ -82,6 +82,7 @@
 .header__link:hover,
 .header__link--active {
   color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .header__link::after {

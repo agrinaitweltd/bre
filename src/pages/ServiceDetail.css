@@ -1,7 +1,7 @@
 /* Service Detail Banner */
 .sd-banner {
   position: relative;
-  min-height: 45vh;
+  min-height: 42vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -27,7 +27,7 @@
 .sd-banner__inner {
   position: relative;
   z-index: 2;
-  padding: 100px 0 48px;
+  padding: 84px 0 40px;
   color: var(--white);
 }
 
@@ -68,21 +68,21 @@
 /* Content Grid */
 .sd-content__grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 48px;
   align-items: start;
 }
 
 .sd-content__image {
-  border-radius: var(--radius);
+  border-radius: 28px;
   overflow: hidden;
   margin-bottom: 32px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
 }
 
 .sd-content__image img {
   width: 100%;
-  height: 320px;
+  height: 340px;
   object-fit: cover;
 }
 
@@ -129,10 +129,10 @@
 
 /* CTA Sidebar Card */
 .sd-cta-card {
-  background: var(--primary);
+  background: linear-gradient(180deg, rgba(0, 191, 165, 0.95) 0%, rgba(12, 73, 83, 0.95) 100%);
   color: var(--white);
-  border-radius: var(--radius);
-  padding: 32px;
+  border-radius: 28px;
+  padding: 34px;
   text-align: center;
 }
 
