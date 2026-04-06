@@ -36,45 +36,39 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Why Choose Us / Social Impact */}
       <section className="section about-mission" ref={missionRef}>
         <div className="container about-mission__inner">
           <div className="about-mission__image slide-in-left">
             <img src="/about-impact.jpg" alt="Our team making an impact" />
           </div>
           <div className="about-mission__content slide-in-right">
-            <h2>Who We Are</h2>
+            <h2>WHY CHOOSE US?</h2>
+            <ul className="about-mission__list">
+              <li>✔ Unmatched Reliability</li>
+              <li>Public Liability & Goods-in-Transit Insurance</li>
+              <li>Serving London & Surrounding Areas</li>
+              <li>Ο Modern Fleet & Equipment</li>
+              <li>Ο Stress-Free End of Tenancy<br />Leave properties spotless and inspection-ready.</li>
+            </ul>
+            <h3 className="about-mission__subtitle">Social Impact: Teamwork Makes The Dream Work</h3>
             <p>
-              Breezyee Moves was founded with a simple belief: moving house or office
-              shouldn't be stressful, and it should benefit the community. As a
-              London-based social enterprise, we combine professional removal services
-              with a deep commitment to social impact.
+              With 11.6% youth unemployment in the UK (2023), every move or clearance job you book creates opportunities. We hire and train young people not in education, employment, or training (NEET), prioritising those facing systemic barriers or seeking a fresh start. By investing in their potential, we're tackling unemployment and fostering inclusive growth.
             </p>
+            <h3 className="about-mission__subtitle">The Breezyeers Advantage</h3>
             <p>
-              Our team is made up of trained professionals from diverse backgrounds,
-              many of whom have gained skills and employment through our community
-              training programmes. When you choose Breezyee Moves, you're choosing a
-              service that invests back into London's communities.
+              Our workforce isn't just strong - they're driven, skilled, and safety-trained. Need extra hands? Hire Breezyeers for:
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="section about-values" ref={valuesRef}>
-        <div className="container">
-          <h2 className="section-title blur-in">Our Values</h2>
-          <p className="section-subtitle blur-in">
-            The principles that guide everything we do.
-          </p>
-          <div className="values-grid">
-            {values.map((v, i) => (
-              <div className="value-card fade-in" key={v.title} style={{ transitionDelay: `${i * 100}ms` }}>
-                <span className="value-card__icon"><Icon name={v.icon} /></span>
-                <h3>{v.title}</h3>
-                <p>{v.desc}</p>
-              </div>
-            ))}
+            <ul className="about-mission__list">
+              <li>Heavy lifting</li>
+              <li>Packing/unpacking</li>
+              <li>End-of-tenancy clean-ups</li>
+              <li>Short-term project support</li>
+            </ul>
+            <h3 className="about-mission__subtitle">Cost-Effective Flexibility</h3>
+            <p>
+              Choose full-service relocations, DIY van hires, or tailored clearance packages - we adapt to your budget and timeline.
+            </p>
           </div>
         </div>
       </section>

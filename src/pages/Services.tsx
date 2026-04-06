@@ -1,24 +1,22 @@
 import { useInView } from '../hooks/useInView'
 import { Link } from 'react-router-dom'
-import { getServicesByCategory, type ServiceData } from '../data/services'
+
+import { getServicesByGroup, type ServiceData } from '../data/services'
+import { useInView } from '../hooks/useInView'
+import { Link } from 'react-router-dom'
 import './Services.css'
 
-const removals = getServicesByCategory('removals')
-const specialist = getServicesByCategory('specialist')
-const support = getServicesByCategory('support')
+const homeServices = getServicesByGroup('home')
+const businessServices = getServicesByGroup('business')
 
 function ServiceGroup({ title, services }: { title: string; services: ServiceData[] }) {
   const ref = useInView<HTMLDivElement>()
-
   return (
     <div className="service-group" ref={ref}>
       <h2 className="service-group__title fade-in">{title}</h2>
       <div className="service-group__grid">
         {services.map((s, i) => (
           <Link to={`/services/${s.slug}`} className="service-item fade-in" key={s.slug} style={{ transitionDelay: `${i * 80}ms` }}>
-            <div className="service-item__img">
-              <img src={s.img} alt={s.title} loading="lazy" />
-            </div>
             <div className="service-item__body">
               <h3>{s.title}</h3>
               <p>{s.desc}</p>
@@ -36,23 +34,21 @@ function ServiceGroup({ title, services }: { title: string; services: ServiceDat
 
 export default function Services() {
   const bannerRef = useInView<HTMLElement>()
-
   return (
     <>
       <section className="page-banner" ref={bannerRef}>
         <div className="container">
           <h1 className="page-banner__title fade-in">Our Services</h1>
           <p className="page-banner__subtitle fade-in">
-            Comprehensive removal and logistics solutions for every need.
+            For homes, individuals, and businesses — discover our full range of removal and logistics solutions.
           </p>
         </div>
       </section>
 
       <section className="section services-page">
         <div className="container">
-          <ServiceGroup title="Removals" services={removals} />
-          <ServiceGroup title="Specialist Moves" services={specialist} />
-          <ServiceGroup title="Support Services" services={support} />
+          <ServiceGroup title="For Homes & Individuals" services={homeServices} />
+          <ServiceGroup title="For Businesses (B2B Solutions)" services={businessServices} />
 
           <div className="services-page__cta">
             <p>Need a custom solution? We're happy to help.</p>

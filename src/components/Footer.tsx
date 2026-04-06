@@ -2,8 +2,14 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const services = [
-  'Man and Van', 'House Removals', 'Office Removals', 'Student Removals',
-  'Storage Services',
+  'Home/Office/Storage Removals',
+  'End of Tenancy Clearance',
+  'Student Accommodation Relocations',
+  'Man & Van Collection/Delivery',
+  'Self-Drive Van Hire',
+  'Office & Warehouse Relocations',
+  'Construction Site Logistics',
+  'On-Demand Breezyeers',
 ]
 
 const quickLinks = [

@@ -3,9 +3,14 @@ import { useInView } from '../hooks/useInView'
 import './Contact.css'
 
 const serviceOptions = [
-  'Self-Vehicle Hire', 'Man and Van', 'House Removals', 'Office Removals',
-  'Student Removals', 'Furniture Removals',
-  'Art Removals', 'Packaging Services', 'Storage Services',
+  'Home/Office/Storage Removals',
+  'End of Tenancy Clearance',
+  'Student Accommodation Relocations',
+  'Man & Van Collection/Delivery',
+  'Self-Drive Van Hire',
+  'Office & Warehouse Relocations',
+  'Construction Site Logistics',
+  'On-Demand Breezyeers',
   'Other',
 ]
 
