@@ -78,7 +78,7 @@ export default function Hero() {
       <div className="hero__bg" ref={bgRef}>
         <video
           className="hero__video"
-          src="/vid.mp4"
+          src="/vif.mp4"
           autoPlay
           loop
           muted
