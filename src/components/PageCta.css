@@ -1,6 +1,6 @@
 .page-cta {
-  background: linear-gradient(180deg, rgba(3, 21, 33, 0.98), rgba(12, 34, 55, 0.98));
-  padding: 64px 0;
+  background: #111;
+  padding: 56px 0;
   color: #fff;
 }
 
@@ -8,70 +8,57 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 32px;
 }
 
 .page-cta__content {
-  max-width: 760px;
-}
-
-.page-cta__eyebrow {
-  display: inline-flex;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 18px;
+  max-width: 640px;
 }
 
 .page-cta__title {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  line-height: 1.05;
-  margin-bottom: 18px;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 
 .page-cta__text {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 1rem;
-  line-height: 1.9;
-  max-width: 680px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .page-cta__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-width: 220px;
-  padding: 18px 28px;
+  gap: 10px;
+  padding: 16px 32px;
   background: #fff;
-  color: #061824;
-  font-weight: 800;
+  color: #111;
+  font-weight: 700;
+  font-size: 0.88rem;
   text-transform: uppercase;
-  border-radius: 14px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
 }
 
 .page-cta__button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .page-cta__inner {
     flex-direction: column;
-    align-items: stretch;
     text-align: center;
   }
 
   .page-cta__button {
     width: 100%;
-    padding: 18px 0;
     justify-content: center;
   }
 }
