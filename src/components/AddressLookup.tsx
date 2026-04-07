@@ -42,7 +42,7 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
   const [loading, setLoading] = useState(false)
   const [selectedAddress, setSelectedAddress] = useState('')
   const wrapRef = useRef<HTMLDivElement>(null)
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>()
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
