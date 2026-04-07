@@ -20,6 +20,16 @@
   z-index: 1;
 }
 
+.services-hero__eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  margin-bottom: 14px;
+}
+
 .services-hero__title {
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 700;

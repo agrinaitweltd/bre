@@ -19,7 +19,8 @@ export default function Services() {
     <>
       <section className="services-hero" ref={heroRef}>
         <div className="container">
-          <h1 className="services-hero__title fade-in">Our Services</h1>
+          <span className="services-hero__eyebrow fade-in">Our Expertise</span>
+          <h1 className="services-hero__title slide-in-up">Our Services</h1>
           <p className="services-hero__subtitle fade-in">
             A complete range of professional removal and logistics services, delivered to the highest standard across London and the UK.
           </p>

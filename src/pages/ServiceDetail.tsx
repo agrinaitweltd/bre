@@ -9,6 +9,7 @@ export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>()
   const service = slug ? getServiceBySlug(slug) : undefined
   const aboutRef = useInView<HTMLElement>()
+  const statsRef = useInView<HTMLElement>()
   const approachRef = useInView<HTMLElement>()
   const faqRef = useInView<HTMLElement>()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -38,10 +39,10 @@ export default function ServiceDetail() {
       </section>
 
       {/* Stats Bar */}
-      <section className="sd-stats">
+      <section className="sd-stats" ref={statsRef}>
         <div className="container sd-stats__inner">
           {service.stats.map((s, i) => (
-            <div className="sd-stat" key={i}>
+            <div className="sd-stat zoom-pop" key={i} style={{ transitionDelay: `${i * 100}ms` }}>
               <span className="sd-stat__value">{s.value}</span>
               <span className="sd-stat__label">{s.label}</span>
             </div>
@@ -53,8 +54,8 @@ export default function ServiceDetail() {
       <section className="section sd-about" ref={aboutRef}>
         <div className="container sd-about__grid">
           <div className="sd-about__image slide-in-left">
-            {service.bannerImg ? (
-              <img src={service.bannerImg} alt={service.title} />
+            {service.detailImg ? (
+              <img src={service.detailImg} alt={service.title} />
             ) : service.img ? (
               <img src={service.img} alt={service.title} />
             ) : null}

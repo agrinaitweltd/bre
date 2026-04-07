@@ -7,6 +7,7 @@ export interface ServiceData {
   heroSubtitle: string;
   img?: string;
   bannerImg?: string;
+  detailImg?: string;
   included: string[];
   stats: { value: string; label: string }[];
   approach: string;
@@ -24,6 +25,7 @@ export const services: ServiceData[] = [
     details: 'Our comprehensive removal service covers every aspect of your move. Whether you need a complete property clearance or a targeted relocation, our skilled team delivers exceptional results that stand the test of time.\n\nWe work closely with you throughout the entire process — from initial consultation and planning through to final completion — ensuring the work meets your exact specifications and budget.',
     img: '/service-icons/home-office.svg',
     bannerImg: '/banners/home-office-storage.jpg',
+    detailImg: '/details/home-office-detail.jpg',
     included: [
       'Full property packing and wrapping',
       'Furniture disassembly and reassembly',
@@ -54,6 +56,7 @@ export const services: ServiceData[] = [
     details: 'We leave your property spotless and ready for inspection. Our end of tenancy service includes deep cleaning, waste removal, and a final property check for complete peace of mind.\n\nOur team ensures every surface is cleaned, all waste is responsibly disposed of, and the property meets the highest standards for handover.',
     img: '/service-icons/clearance.svg',
     bannerImg: '/banners/end-of-tenancy.jpg',
+    detailImg: '/details/end-of-tenancy-detail.jpg',
     included: [
       'Complete property deep clean',
       'Waste removal and responsible disposal',
@@ -84,6 +87,7 @@ export const services: ServiceData[] = [
     details: 'Special rates and flexible scheduling for students moving into or out of accommodation. Quick, efficient, and budget-friendly — designed around the academic calendar.\n\nWe understand student budgets and timelines. Our service is tailored to be as flexible and affordable as possible without compromising on care or reliability.',
     img: '/service-icons/student.svg',
     bannerImg: '/banners/student-relocations.jpg',
+    detailImg: '/details/student-relocations-detail.jpg',
     included: [
       'Flexible booking around term dates',
       'Budget-friendly pricing tiers',
@@ -114,6 +118,7 @@ export const services: ServiceData[] = [
     details: 'Perfect for single items, small moves, or when you need an extra pair of hands. Our man and van service is fast, friendly, and fully insured.\n\nWhether it\'s a marketplace pickup, a furniture delivery, or a small flat move, we\'re ready to help at short notice.',
     img: '/service-icons/man-van.svg',
     bannerImg: '/banners/man-and-van.jpg',
+    detailImg: '/details/man-and-van-detail.jpg',
     included: [
       'Single item or multi-item collection',
       'Furniture assembly and disassembly',
@@ -144,6 +149,7 @@ export const services: ServiceData[] = [
     details: 'Choose from a range of van sizes for your own DIY move or project. Flexible hire periods with competitive rates and comprehensive cover.\n\nAll our vans are well-maintained, clean, and come with breakdown cover included.',
     img: '/service-icons/van-hire.svg',
     bannerImg: '/banners/self-drive-van.jpg',
+    detailImg: '/details/self-drive-van-detail.jpg',
     included: [
       'Range of van sizes available',
       'Flexible hire periods (hourly/daily/weekly)',
@@ -176,6 +182,7 @@ export const services: ServiceData[] = [
     details: 'Minimise downtime with our expert business relocation services. We handle everything from planning to execution, ensuring your operation is back up and running as quickly as possible.\n\nOur team understands the unique challenges of commercial moves and works around your schedule to reduce disruption.',
     img: '/service-icons/office-warehouse.svg',
     bannerImg: '/banners/office-warehouse.jpg',
+    detailImg: '/details/office-warehouse-detail.jpg',
     included: [
       'Pre-move planning and coordination',
       'IT equipment handling and setup',
@@ -206,6 +213,7 @@ export const services: ServiceData[] = [
     details: 'Specialist logistics for construction sites, including delivery and removal of equipment, tools, and materials. We understand the demands of site work and deliver reliable, on-time service.\n\nFrom initial material delivery to final site clearance, our team keeps your project on schedule.',
     img: '/service-icons/construction.svg',
     bannerImg: '/banners/construction-logistics.jpg',
+    detailImg: '/details/construction-logistics-detail.jpg',
     included: [
       'Heavy machinery transport',
       'Building materials delivery',
@@ -236,6 +244,7 @@ export const services: ServiceData[] = [
     details: 'Flexible, skilled teams available for short-term or project-based support. Ideal for loading, packing, or any labour-intensive business needs.\n\nOur Breezyeers are trained, safety-certified, and ready to integrate seamlessly into your team.',
     img: '/service-icons/breezyeers.svg',
     bannerImg: '/banners/on-demand-breezyeers.jpg',
+    detailImg: '/details/on-demand-breezyeers-detail.jpg',
     included: [
       'Trained and safety-certified workers',
       'Flexible booking (hourly/daily/weekly)',

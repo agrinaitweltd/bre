@@ -68,18 +68,21 @@ export default function Home() {
       {/* About Breezyee Section */}
       <section className="section home-about-breezyee" ref={aboutRef}>
         <div className="container home-about-breezyee__inner">
-          <div className="home-about-breezyee__image slide-in-left">
+          <div className="home-about-breezyee__image clip-reveal">
             <img src="/about-impact.jpg" alt="Community impact" />
           </div>
           <div className="home-about-breezyee__content slide-in-right">
             <span className="home-about-breezyee__eyebrow">About Breezyee</span>
             <h2 className="home-about-breezyee__title">Built on trust, delivered with pride.</h2>
             <p className="home-about-breezyee__text">
-              Breezyee Moves is a London-based removal service combining professional care with genuine social impact. Every assignment is handled with precision, reliability and a focus on protecting your belongings.
+              At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book directly supports our community programme.
             </p>
             <p className="home-about-breezyee__text">
-              We support local communities by training and employing young people, while delivering a seamless moving experience from start to finish.
+              Need manpower or a hassle-free end-of-tenancy clearance? Hire a Breezyee crew by the hour — efficient, thorough, and ready to work!
             </p>
+            <div className="home-about-breezyee__logo-row">
+              <img src="/logo9.png" alt="Breezyee Moves" className="home-about-breezyee__logo-badge" />
+            </div>
             <Link to="/about" className="btn btn-primary">Read Our Story</Link>
           </div>
         </div>

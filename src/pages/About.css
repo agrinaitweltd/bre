@@ -1,7 +1,7 @@
 /* ========== About Hero ========== */
 .about-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -27,12 +27,22 @@
 .about-hero__inner {
   position: relative;
   z-index: 2;
-  padding: 140px 0 60px;
+  padding: 160px 0 70px;
   color: var(--white);
 }
 
+.about-hero__eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  margin-bottom: 16px;
+}
+
 .about-hero__title {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 700;
   margin-bottom: 14px;
   letter-spacing: -0.02em;
@@ -41,7 +51,7 @@
 .about-hero__subtitle {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
-  max-width: 480px;
+  max-width: 520px;
   line-height: 1.7;
 }
 
@@ -82,6 +92,10 @@
   margin-bottom: 16px;
 }
 
+.about-story__btn {
+  margin-top: 12px;
+}
+
 .about-story__image {
   border-radius: var(--radius);
   overflow: hidden;
@@ -90,14 +104,83 @@
 
 .about-story__image img {
   width: 100%;
-  height: 420px;
+  height: 460px;
   object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.about-story__image:hover img {
+  transform: scale(1.03);
+}
+
+/* ========== Brand & Social Mission ========== */
+.about-brand {
+  background: var(--bg);
+}
+
+.about-brand__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-brand__logo-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 48px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.about-brand__logo-img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+}
+
+.about-brand__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.about-brand__text {
+  color: var(--text-light);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.about-brand__badges {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.about-brand__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
 }
 
 /* ========== Mission Quote ========== */
 .about-mission-quote {
   padding: 80px 0;
-  background: var(--bg);
+  background: var(--white);
 }
 
 .about-mission-quote__card {
@@ -105,18 +188,6 @@
   border-radius: var(--radius);
   padding: 48px 56px;
   color: var(--white);
-  position: relative;
-}
-
-.about-mission-quote__card::before {
-  content: '';
-  position: absolute;
-  left: 48px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: rgba(255, 255, 255, 0.3);
-  display: none;
 }
 
 .about-mission-quote__eyebrow {
@@ -140,7 +211,7 @@
 
 /* ========== Core Values ========== */
 .about-values {
-  background: var(--white);
+  background: var(--bg);
 }
 
 .about-values__header {
@@ -155,15 +226,16 @@
 }
 
 .value-card {
-  background: var(--bg);
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px 28px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.35s ease;
 }
 
 .value-card:hover {
   border-color: var(--primary);
+  transform: translateY(-4px);
 }
 
 .value-card__num {
@@ -186,9 +258,56 @@
   line-height: 1.7;
 }
 
+/* ========== Gallery ========== */
+.about-gallery {
+  background: var(--white);
+}
+
+.about-gallery__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.about-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  gap: 16px;
+}
+
+.about-gallery__item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #e4e4e4;
+}
+
+.about-gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.about-gallery__item:hover img {
+  transform: scale(1.06);
+}
+
+.about-gallery__item--tall {
+  grid-row: span 2;
+}
+
+.about-gallery__item--wide {
+  grid-column: span 2;
+}
+
 /* ========== Impact ========== */
 .about-impact {
   background: var(--bg);
+}
+
+.about-impact__header {
+  text-align: center;
+  margin-bottom: 48px;
 }
 
 .impact-grid {
@@ -203,11 +322,12 @@
   background: var(--white);
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.35s ease;
 }
 
 .impact-card:hover {
   border-color: var(--primary);
+  transform: translateY(-4px);
 }
 
 .impact-card__value {
@@ -226,54 +346,6 @@
   letter-spacing: 0.08em;
 }
 
-/* ========== Team ========== */
-.about-team {
-  background: var(--white);
-}
-
-.about-team__header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 32px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.team-card {
-  text-align: left;
-}
-
-.team-card__img {
-  width: 100%;
-  height: 280px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #e4e4e4;
-  margin-bottom: 16px;
-}
-
-.team-card__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.team-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.team-card p {
-  font-size: 0.88rem;
-  color: var(--text-light);
-}
-
 /* ========== Responsive ========== */
 @media (max-width: 900px) {
   .about-story__grid {
@@ -282,7 +354,16 @@
   }
 
   .about-story__image img {
-    height: 280px;
+    height: 300px;
+  }
+
+  .about-brand__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-brand__logo-col {
+    padding: 32px;
   }
 
   .values-grid {
@@ -292,6 +373,19 @@
   .about-mission-quote__card {
     padding: 32px 28px;
   }
+
+  .about-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+
+  .about-gallery__item--tall {
+    grid-row: span 1;
+  }
+
+  .about-gallery__item--wide {
+    grid-column: span 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -300,7 +394,7 @@
   }
 
   .about-hero__inner {
-    padding: 120px 0 40px;
+    padding: 120px 0 50px;
   }
 }
 
@@ -310,8 +404,8 @@
     gap: 16px;
   }
 
-  .team-grid {
+  .about-gallery__grid {
     grid-template-columns: 1fr;
-    max-width: 100%;
+    grid-auto-rows: 200px;
   }
 }

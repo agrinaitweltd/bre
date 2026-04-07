@@ -145,6 +145,15 @@
   margin-top: 12px;
 }
 
+.home-about-breezyee__logo-row {
+  margin: 16px 0 8px;
+}
+
+.home-about-breezyee__logo-badge {
+  max-width: 180px;
+  height: auto;
+}
+
 /* ========== Home: Why Choose Us ========== */
 .home-why-choose {
   background: var(--bg);

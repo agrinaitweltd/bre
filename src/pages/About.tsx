@@ -16,16 +16,13 @@ const stats = [
   { value: '12', label: 'Years of Service' },
 ]
 
-const team = [
-  { name: 'Marcus Johnson', role: 'Founder & Director', img: '/team-marcus.jpg' },
-  { name: 'Priya Sharma', role: 'Operations Manager', img: '/team-priya.jpg' },
-]
-
 export default function About() {
   const storyRef = useInView<HTMLElement>()
   const missionRef = useInView<HTMLElement>()
   const valuesRef = useInView<HTMLElement>()
-  const teamRef = useInView<HTMLElement>()
+  const logoRef = useInView<HTMLElement>()
+  const impactRef = useInView<HTMLElement>()
+  const galleryRef = useInView<HTMLElement>()
 
   return (
     <>
@@ -36,9 +33,10 @@ export default function About() {
           <div className="about-hero__overlay" />
         </div>
         <div className="container about-hero__inner">
-          <h1 className="about-hero__title">About Breezyee Moves</h1>
-          <p className="about-hero__subtitle">
-            Trusted removal professionals, dedicated to quality and reliability across London.
+          <span className="about-hero__eyebrow fade-in">About Us</span>
+          <h1 className="about-hero__title slide-in-up">About Breezyee Moves</h1>
+          <p className="about-hero__subtitle fade-in">
+            Trusted removal professionals, dedicated to quality and reliability across London and surrounding areas.
           </p>
         </div>
       </section>
@@ -58,9 +56,33 @@ export default function About() {
             <p>
               Today, Breezyee Moves operates a skilled, multidisciplinary team covering removals, logistics, clearance, and specialist services. Every team member shares our core values and commitment to the highest professional standard.
             </p>
+            <Link to="/contact" className="btn btn-primary about-story__btn">Get In Touch</Link>
           </div>
           <div className="about-story__image slide-in-right">
-            <img src="/about-impact.jpg" alt="Our team at work" />
+            <img src="/about-story.jpg" alt="Our team at work" />
+          </div>
+        </div>
+      </section>
+
+      {/* Brand & Social Mission */}
+      <section className="section about-brand" ref={logoRef}>
+        <div className="container about-brand__inner">
+          <div className="about-brand__logo-col scale-in">
+            <img src="/logo9.png" alt="Breezyee Moves" className="about-brand__logo-img" />
+          </div>
+          <div className="about-brand__content slide-in-right">
+            <span className="section-eyebrow">Our Social Mission</span>
+            <h2 className="about-brand__title">Bridging Gaps, Building Futures</h2>
+            <p className="about-brand__text">
+              At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book with us directly supports our training and employment programmes.
+            </p>
+            <p className="about-brand__text">
+              Need manpower or a hassle-free end-of-tenancy clearance? Hire a Breezyee crew by the hour — efficient, thorough, and ready to work!
+            </p>
+            <div className="about-brand__badges">
+              <span className="about-brand__badge">Covering London & Surrounding Areas</span>
+              <span className="about-brand__badge">BREEZYEE GROUP LTD / Company No. 15484073</span>
+            </div>
           </div>
         </div>
       </section>
@@ -71,7 +93,7 @@ export default function About() {
           <div className="about-mission-quote__card fade-in">
             <span className="about-mission-quote__eyebrow">Our Mission</span>
             <blockquote>
-              "To provide exceptional removal and logistics services that exceed expectations — delivered by skilled professionals who take genuine pride in every job."
+              "To provide exceptional removal and logistics services that exceed expectations — delivered by skilled professionals who take genuine pride in every job, while creating meaningful opportunities for young people in our community."
             </blockquote>
           </div>
         </div>
@@ -99,38 +121,51 @@ export default function About() {
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section className="section about-impact">
+      {/* Photo Gallery */}
+      <section className="section about-gallery" ref={galleryRef}>
         <div className="container">
-          <div className="impact-grid">
-            {stats.map((s, i) => (
-              <div className="impact-card fade-in" key={s.label} style={{ transitionDelay: `${i * 100}ms` }}>
-                <span className="impact-card__value">{s.value}</span>
-                <span className="impact-card__label">{s.label}</span>
-              </div>
-            ))}
+          <div className="about-gallery__header">
+            <span className="section-eyebrow fade-in">Gallery</span>
+            <h2 className="section-title fade-in">See Us In Action</h2>
+          </div>
+          <div className="about-gallery__grid stagger-children">
+            <div className="about-gallery__item about-gallery__item--tall">
+              <img src="/gallery/gallery-1.jpg" alt="Breezyee team loading" />
+            </div>
+            <div className="about-gallery__item">
+              <img src="/gallery/gallery-2.jpg" alt="Packed and ready" />
+            </div>
+            <div className="about-gallery__item">
+              <img src="/gallery/gallery-3.jpg" alt="Safe delivery" />
+            </div>
+            <div className="about-gallery__item about-gallery__item--wide">
+              <img src="/gallery/gallery-4.jpg" alt="Community projects" />
+            </div>
+            <div className="about-gallery__item">
+              <img src="/gallery/gallery-5.jpg" alt="Warehouse logistics" />
+            </div>
+            <div className="about-gallery__item">
+              <img src="/gallery/gallery-6.jpg" alt="Happy customers" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="section about-team" ref={teamRef}>
+      {/* Impact Stats */}
+      <section className="section about-impact" ref={impactRef}>
         <div className="container">
-          <div className="about-team__header">
-            <span className="section-eyebrow fade-in">Meet The Team</span>
-            <h2 className="section-title fade-in">The People Behind the Work</h2>
+          <div className="about-impact__header">
+            <span className="section-eyebrow fade-in">Our Impact</span>
+            <h2 className="section-title fade-in">Numbers That Matter</h2>
             <p className="section-subtitle fade-in">
-              Our team of experienced professionals are the backbone of Breezyee Moves. Skilled, reliable and passionate about the work they do.
+              Statistics Source: UK Office for National Statistics, 2023
             </p>
           </div>
-          <div className="team-grid stagger-children">
-            {team.map((t) => (
-              <div className="team-card" key={t.name}>
-                <div className="team-card__img">
-                  <img src={t.img} alt={t.name} />
-                </div>
-                <h3>{t.name}</h3>
-                <p>{t.role}</p>
+          <div className="impact-grid stagger-children">
+            {stats.map((s) => (
+              <div className="impact-card" key={s.label}>
+                <span className="impact-card__value">{s.value}</span>
+                <span className="impact-card__label">{s.label}</span>
               </div>
             ))}
           </div>
