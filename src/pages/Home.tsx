@@ -83,7 +83,7 @@ export default function Home() {
       <section className="section home-about-breezyee" ref={aboutRef}>
         <div className="container home-about-breezyee__inner">
           <div className="home-about-breezyee__image clip-reveal">
-            <img src="/about-impact.jpg" alt="Breezyee Moves van" />
+            <img src="/about-impact.png" alt="Breezyee Moves van" />
             <div className="home-about-breezyee__image-badge">
               <span className="home-about-breezyee__badge-value">10+</span>
               <span className="home-about-breezyee__badge-label">Years Experience</span>
