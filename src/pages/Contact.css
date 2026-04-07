@@ -340,12 +340,12 @@
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  animation: inventorySlideIn 0.3s ease;
+  animation: inventorySlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes inventorySlideIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-10px); max-height: 0; }
+  to { opacity: 1; transform: translateY(0); max-height: 600px; }
 }
 
 .contact-inventory__tabs {
@@ -488,9 +488,28 @@
     align-self: flex-start;
   }
 
+  .contact-inventory__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    overflow-x: visible;
+  }
+
   .contact-inventory__tab {
-    padding: 10px 14px;
-    font-size: 0.75rem;
+    padding: 10px 8px;
+    font-size: 0.72rem;
+    text-align: center;
+    border-bottom: 1.5px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .contact-inventory__tab:nth-child(3n) {
+    border-right: none;
+  }
+
+  .contact-inventory__tab--active {
+    background: rgba(142, 94, 162, 0.06);
+    border-bottom-color: var(--primary);
   }
 
   .contact-inventory__row {
@@ -510,11 +529,27 @@
     width: 32px;
     font-size: 0.84rem;
   }
+
+  .contact-inventory__items {
+    max-height: 260px;
+  }
 }
 
 @media (max-width: 500px) {
   .contact-form__property-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact-inventory__tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-inventory__tab:nth-child(3n) {
+    border-right: 1px solid var(--border);
+  }
+
+  .contact-inventory__tab:nth-child(2n) {
+    border-right: none;
   }
 }

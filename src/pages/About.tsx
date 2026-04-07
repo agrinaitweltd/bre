@@ -130,22 +130,22 @@ export default function About() {
           </div>
           <div className="about-gallery__grid stagger-children">
             <div className="about-gallery__item about-gallery__item--tall">
-              <img src="/gallery/gallery-1.jpg" alt="Breezyee team loading" />
+              <img src="/gallery-1.png" alt="Breezyee team loading" />
             </div>
             <div className="about-gallery__item">
-              <img src="/gallery/gallery-2.jpg" alt="Packed and ready" />
+              <img src="/gallery-2.png" alt="Packed and ready" />
             </div>
             <div className="about-gallery__item">
-              <img src="/gallery/gallery-3.jpg" alt="Safe delivery" />
+              <img src="/gallery-3.png" alt="Safe delivery" />
             </div>
             <div className="about-gallery__item about-gallery__item--wide">
-              <img src="/gallery/gallery-4.jpg" alt="Community projects" />
+              <img src="/gallery-4.png" alt="Community projects" />
             </div>
             <div className="about-gallery__item">
-              <img src="/gallery/gallery-5.jpg" alt="Warehouse logistics" />
+              <img src="/gallery-5.png" alt="Warehouse logistics" />
             </div>
             <div className="about-gallery__item">
-              <img src="/gallery/gallery-6.jpg" alt="Happy customers" />
+              <img src="/gallery6.png" alt="Happy customers" />
             </div>
           </div>
         </div>
