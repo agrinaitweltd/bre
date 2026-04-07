@@ -1,9 +1,33 @@
 /* ========== Contact Hero ========== */
 .contact-hero {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  position: relative;
+  overflow: hidden;
+  background: #111;
   padding: 140px 0 60px;
   text-align: center;
   color: var(--white);
+}
+
+.contact-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.contact-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.45) 100%);
+}
+
+.contact-hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-hero__title {

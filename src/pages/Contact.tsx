@@ -68,6 +68,10 @@ export default function Contact() {
   return (
     <>
       <section className="contact-hero">
+        <div className="contact-hero__bg">
+          <img src="/contact-banner.png" alt="" />
+          <div className="contact-hero__overlay" />
+        </div>
         <div className="container">
           <div className="contact-hero__inner">
             <h1 className="contact-hero__title">Get Your Free Quote</h1>

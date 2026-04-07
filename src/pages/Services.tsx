@@ -18,6 +18,10 @@ export default function Services() {
   return (
     <>
       <section className="services-hero" ref={heroRef}>
+        <div className="services-hero__bg">
+          <img src="/services-banner.png" alt="" />
+          <div className="services-hero__overlay" />
+        </div>
         <div className="container">
           <span className="services-hero__eyebrow fade-in">Our Expertise</span>
           <h1 className="services-hero__title slide-in-up">Our Services</h1>

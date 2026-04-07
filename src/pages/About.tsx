@@ -29,7 +29,7 @@ export default function About() {
       {/* Hero Banner */}
       <section className="about-hero">
         <div className="about-hero__bg">
-          <img src="/about-banner.jpg" alt="" />
+          <img src="/about-banner.png" alt="" />
           <div className="about-hero__overlay" />
         </div>
         <div className="container about-hero__inner">
@@ -59,7 +59,7 @@ export default function About() {
             <Link to="/contact" className="btn btn-primary about-story__btn">Get In Touch</Link>
           </div>
           <div className="about-story__image slide-in-right">
-            <img src="/about-story.jpg" alt="Our team at work" />
+            <img src="/about-story.png" alt="Our team at work" />
           </div>
         </div>
       </section>
