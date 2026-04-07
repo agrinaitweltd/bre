@@ -157,7 +157,7 @@ export default function Home() {
         <div className="container">
           <span className="home-helped__eyebrow fade-in">Trusted Nationwide</span>
           <h2 className="home-helped__title fade-in">
-            We've already helped over <span className="home-helped__count">2,882,905</span> movers
+            We've already helped over <span className="home-helped__count">981</span> movers
           </h2>
           <p className="home-helped__subtitle fade-in">
             From first-time tenants to large commercial relocations, our network of partners cover every step of your journey.
