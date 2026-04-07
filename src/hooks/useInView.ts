@@ -1,6 +1,6 @@
 import { useEffect, useRef, type RefObject } from 'react'
 
-const ANIM_CLASSES = ['.fade-in', '.slide-in-left', '.slide-in-right', '.scale-in', '.stagger-children', '.slide-in-up', '.rotate-in', '.blur-in', '.counter-up', '.clip-reveal', '.flip-in-left', '.zoom-pop']
+const ANIM_CLASSES = ['.fade-in', '.slide-in-left', '.slide-in-right', '.scale-in', '.stagger-children', '.slide-in-up', '.rotate-in', '.blur-in', '.counter-up', '.clip-reveal', '.flip-in-left', '.zoom-pop', '.slide-in-bottom']
 
 export function useInView<T extends HTMLElement>(): RefObject<T | null> {
   const ref = useRef<T>(null)

@@ -74,8 +74,8 @@ export default function Contact() {
         </div>
         <div className="container">
           <div className="contact-hero__inner">
-            <h1 className="contact-hero__title">Get Your Free Quote</h1>
-            <p className="contact-hero__subtitle">
+            <h1 className="contact-hero__title slide-in-up">Get Your Free Quote</h1>
+            <p className="contact-hero__subtitle fade-in">
               Compare quotes from our expert team. Instantly get a competitive, no-obligation quote for your move.
             </p>
           </div>

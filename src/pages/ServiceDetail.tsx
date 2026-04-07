@@ -35,8 +35,8 @@ export default function ServiceDetail() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             All Services
           </Link>
-          <h1 className="sd-hero__title">{service.title}</h1>
-          <p className="sd-hero__subtitle">{service.heroSubtitle}</p>
+          <h1 className="sd-hero__title slide-in-up">{service.title}</h1>
+          <p className="sd-hero__subtitle fade-in">{service.heroSubtitle}</p>
         </div>
       </section>
 
@@ -63,13 +63,13 @@ export default function ServiceDetail() {
             ) : null}
           </div>
           <div className="sd-about__content slide-in-right">
-            <span className="sd-about__eyebrow">About This Service</span>
-            <h2 className="sd-about__title">{service.heroSubtitle}</h2>
+            <span className="sd-about__eyebrow fade-in">About This Service</span>
+            <h2 className="sd-about__title fade-in">{service.heroSubtitle}</h2>
             {service.details.split('\n\n').map((p, i) => (
               <p key={i}>{p}</p>
             ))}
 
-            <div className="sd-included">
+            <div className="sd-included stagger-children">
               <h3>What's Included</h3>
               <ul>
                 {service.included.map((item, i) => (
@@ -93,8 +93,8 @@ export default function ServiceDetail() {
       <section className="section sd-approach" ref={approachRef}>
         <div className="container sd-approach__inner">
           <div className="sd-approach__label">
-            <span className="sd-approach__eyebrow">Our Approach</span>
-            <h2 className="sd-approach__title">How We Deliver {service.title}</h2>
+            <span className="sd-approach__eyebrow fade-in">Our Approach</span>
+            <h2 className="sd-approach__title fade-in">How We Deliver {service.title}</h2>
           </div>
           <div className="sd-approach__content fade-in">
             <p>{service.approach}</p>
@@ -109,12 +109,12 @@ export default function ServiceDetail() {
       {service.faqs.length > 0 && (
         <section className="section sd-faq" ref={faqRef}>
           <div className="container">
-            <span className="sd-faq__eyebrow">Frequently Asked</span>
-            <h2 className="sd-faq__title">Frequently Asked Questions</h2>
-            <p className="sd-faq__intro">
+            <span className="sd-faq__eyebrow fade-in">Frequently Asked</span>
+            <h2 className="sd-faq__title fade-in">Frequently Asked Questions</h2>
+            <p className="sd-faq__intro fade-in">
               Below you'll find answers to the most common questions about our services. If you need more information, please contact us directly.
             </p>
-            <div className="sd-faq__list">
+            <div className="sd-faq__list stagger-children">
               {service.faqs.map((faq, i) => (
                 <button
                   key={i}

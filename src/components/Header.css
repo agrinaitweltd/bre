@@ -547,16 +547,22 @@
     height: 36px;
   }
 
-  /* Search bar on mobile — always visible (ignore scroll state) */
+  /* Search bar on mobile — respect scroll state */
   .header__search-bar {
     flex: 1;
     width: auto;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: none !important;
+  }
+
+  .header__search-bar--hidden {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   .header__search-bar-input {

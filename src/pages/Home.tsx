@@ -30,10 +30,10 @@ const testimonials = [
 ]
 
 const helpedCategories = [
-  { icon: 'home', title: 'Conveyancing', desc: 'Complete legal support for buying and selling properties, handled by expert solicitors.' },
-  { icon: 'search', title: 'Surveyors', desc: 'Professional property surveys to give you peace of mind before your move.' },
-  { icon: 'truck', title: 'Removals', desc: 'Full-service packing, loading, and delivery to your new home or office.' },
-  { icon: 'shield', title: 'Storage', desc: 'Secure, flexible storage solutions while you settle into your new space.' },
+  { slug: 'home-office-storage-removals', icon: 'home', title: 'Home/Office Removals', desc: 'Full-service packing, loading, and delivery to your new home or office.' },
+  { slug: 'man-and-van', icon: 'truck', title: 'Man & Van', desc: 'Flexible collection and delivery for single items, small loads, or last-minute moves.' },
+  { slug: 'end-of-tenancy-clearance', icon: 'clean', title: 'End of Tenancy Clearance', desc: 'Complete clean-up, waste removal, and property checks for inspection-ready handovers.' },
+  { slug: 'office-warehouse-relocations', icon: 'building', title: 'Office Relocations', desc: 'Specialist commercial moves with minimal downtime for your business operations.' },
 ]
 
 export default function Home() {
@@ -82,9 +82,9 @@ export default function Home() {
       {/* About Breezyee Section */}
       <section className="section home-about-breezyee" ref={aboutRef}>
         <div className="container home-about-breezyee__inner">
-          <div className="home-about-breezyee__image clip-reveal">
+          <div className="home-about-breezyee__image slide-in-left">
             <img src="/about-impact.png" alt="Breezyee Moves van" />
-            <div className="home-about-breezyee__image-badge">
+            <div className="home-about-breezyee__image-badge zoom-pop">
               <span className="home-about-breezyee__badge-value">10+</span>
               <span className="home-about-breezyee__badge-label">Years Experience</span>
             </div>
@@ -95,7 +95,7 @@ export default function Home() {
             <p className="home-about-breezyee__text">
               At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book directly supports our community programme.
             </p>
-            <div className="home-about-breezyee__features">
+            <div className="home-about-breezyee__features stagger-children">
               {aboutFeatures.map((f) => (
                 <div className="home-about-breezyee__feature" key={f.title}>
                   <div className="home-about-breezyee__feature-icon">
@@ -111,7 +111,7 @@ export default function Home() {
             <div className="home-about-breezyee__logo-row">
               <img src="/logo9.png" alt="Breezyee Moves" className="home-about-breezyee__logo-badge" />
             </div>
-            <Link to="/about" className="btn btn-primary">Read Our Story</Link>
+            <Link to="/about" className="btn btn-primary fade-in">Read Our Story</Link>
           </div>
         </div>
       </section>
@@ -171,14 +171,14 @@ export default function Home() {
               <div className="home-helped__card" key={cat.title}>
                 <div className="home-helped__card-icon">
                   {cat.icon === 'home' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>}
-                  {cat.icon === 'search' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>}
                   {cat.icon === 'truck' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
-                  {cat.icon === 'shield' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                  {cat.icon === 'clean' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>}
+                  {cat.icon === 'building' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01"/></svg>}
                 </div>
                 <h3 className="home-helped__card-title">{cat.title}</h3>
                 <p className="home-helped__card-desc">{cat.desc}</p>
-                <Link to="/contact" className="home-helped__card-btn">
-                  Get Quotes
+                <Link to={`/services/${cat.slug}`} className="home-helped__card-btn">
+                  View Service
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </Link>
               </div>
