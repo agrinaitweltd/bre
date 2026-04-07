@@ -83,6 +83,21 @@
   color: var(--text-light);
 }
 
+.address-dropdown__error {
+  color: #c0392b;
+}
+
+.address-dropdown__count {
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
 .address-dropdown__spinner-inline {
   width: 14px;
   height: 14px;
@@ -163,10 +178,11 @@
   color: var(--text);
 }
 
-.address-lookup__confirmed-area {
+.address-lookup__confirmed-text {
   font-weight: 500;
-  color: var(--text-light);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
+  color: var(--text);
+  line-height: 1.4;
 }
 
 .address-lookup__change-btn {

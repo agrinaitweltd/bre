@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, type ChangeEvent } from 'react'
 import './AddressLookup.css'
 
+const API_KEY = 'ak_mnoi19rcOuqMWn0H0p5vgf6pntmUK'
+
 interface Props {
   id: string
   name: string
@@ -8,27 +10,24 @@ interface Props {
   placeholder?: string
 }
 
-interface PostcodeResult {
+interface IdealAddress {
+  line_1: string
+  line_2: string
+  line_3: string
+  post_town: string
   postcode: string
-  ward: string
-  district: string
-  region: string
+  county: string
 }
 
 export default function AddressLookup({ id, name, label, placeholder }: Props) {
   const [postcodeQuery, setPostcodeQuery] = useState('')
-  const [postcodeSuggestions, setPostcodeSuggestions] = useState<string[]>([])
+  const [addresses, setAddresses] = useState<IdealAddress[]>([])
+  const [selectedAddress, setSelectedAddress] = useState('')
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [confirmed, setConfirmed] = useState<PostcodeResult | null>(null)
-  const [streetAddress, setStreetAddress] = useState('')
+  const [error, setError] = useState('')
   const wrapRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined)
-
-  // Full address for form submission
-  const fullAddress = confirmed
-    ? `${streetAddress ? streetAddress + ', ' : ''}${confirmed.ward}, ${confirmed.district}, ${confirmed.postcode}`
-    : ''
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -40,87 +39,92 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  async function autocompletePostcode(partial: string): Promise<string[]> {
-    try {
-      const cleaned = partial.replace(/\s+/g, '').toUpperCase()
-      const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}/autocomplete`)
-      const data = await res.json()
-      if (data.status === 200 && Array.isArray(data.result)) {
-        return data.result.slice(0, 8)
-      }
-      return []
-    } catch {
-      return []
-    }
-  }
+  async function fetchAddresses(postcode: string) {
+    const cleaned = postcode.replace(/\s+/g, '').toUpperCase()
+    const url = `https://api.ideal-postcodes.co.uk/v1/postcodes/${encodeURIComponent(cleaned)}?api_key=${API_KEY}`
 
-  async function validatePostcode(postcode: string): Promise<PostcodeResult | null> {
     try {
-      const cleaned = postcode.replace(/\s+/g, '').toUpperCase()
-      const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}`)
+      const res = await fetch(url)
       const data = await res.json()
-      if (data.status === 200 && data.result) {
-        return {
-          postcode: data.result.postcode,
-          ward: data.result.admin_ward || '',
-          district: data.result.admin_district || '',
-          region: data.result.region || '',
-        }
+
+      if (data.code === 2000 || (data.result && data.result.length === 0)) {
+        setAddresses([])
+        setError('No addresses found for this postcode')
+        setShowDropdown(true)
+        return
       }
-      return null
+
+      if (data.code && data.code !== 2000) {
+        setAddresses([])
+        setError('Invalid postcode. Please check and try again.')
+        setShowDropdown(true)
+        return
+      }
+
+      if (Array.isArray(data.result) && data.result.length > 0) {
+        setAddresses(data.result)
+        setError('')
+        setShowDropdown(true)
+      } else {
+        setAddresses([])
+        setError('No addresses found for this postcode')
+        setShowDropdown(true)
+      }
     } catch {
-      return null
+      setAddresses([])
+      setError('Connection error. Please try again.')
+      setShowDropdown(true)
     }
   }
 
   function handlePostcodeChange(e: ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
     setPostcodeQuery(val)
-    setConfirmed(null)
-    setStreetAddress('')
+    setSelectedAddress('')
+    setError('')
 
     if (debounceRef.current) clearTimeout(debounceRef.current)
 
     const cleaned = val.replace(/\s+/g, '')
-    if (cleaned.length >= 2) {
+    if (cleaned.length >= 5) {
       setLoading(true)
       setShowDropdown(true)
       debounceRef.current = setTimeout(async () => {
-        const results = await autocompletePostcode(val)
-        setPostcodeSuggestions(results)
+        await fetchAddresses(val)
         setLoading(false)
-      }, 300)
+      }, 400)
     } else {
-      setPostcodeSuggestions([])
+      setAddresses([])
       setShowDropdown(false)
       setLoading(false)
     }
   }
 
-  async function selectPostcode(pc: string) {
-    setPostcodeQuery(pc)
+  function formatAddress(addr: IdealAddress): string {
+    const parts = [addr.line_1, addr.line_2, addr.line_3, addr.post_town, addr.postcode].filter(Boolean)
+    return parts.join(', ')
+  }
+
+  function selectAddress(addr: IdealAddress) {
+    const full = formatAddress(addr)
+    setSelectedAddress(full)
+    setPostcodeQuery(full)
     setShowDropdown(false)
-    setLoading(true)
-    const result = await validatePostcode(pc)
-    if (result) {
-      setConfirmed(result)
-    }
-    setLoading(false)
   }
 
   function handleReset() {
     setPostcodeQuery('')
-    setConfirmed(null)
-    setStreetAddress('')
-    setPostcodeSuggestions([])
+    setSelectedAddress('')
+    setAddresses([])
     setShowDropdown(false)
+    setError('')
   }
 
   return (
     <div className="address-lookup" ref={wrapRef}>
-      <label className="address-lookup__label">{label}</label>
+      <label className="address-lookup__label" htmlFor={id}>{label}</label>
 
-      {!confirmed ? (
+      {!selectedAddress ? (
         <div className="address-lookup__postcode-wrap">
           <input
             type="text"
@@ -128,7 +132,7 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
             placeholder={placeholder || 'Enter postcode e.g. BR3 1SQ'}
             value={postcodeQuery}
             onChange={handlePostcodeChange}
-            onFocus={() => postcodeSuggestions.length > 0 && setShowDropdown(true)}
+            onFocus={() => addresses.length > 0 && setShowDropdown(true)}
             autoComplete="off"
             className="address-lookup__input"
           />
@@ -140,25 +144,31 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
               {loading ? (
                 <div className="address-dropdown__loading">
                   <span className="address-dropdown__spinner-inline" />
-                  Searching postcodes...
+                  Finding addresses...
                 </div>
-              ) : postcodeSuggestions.length > 0 ? (
-                <ul className="address-dropdown__list">
-                  {postcodeSuggestions.map((pc) => (
-                    <li key={pc}>
-                      <button
-                        type="button"
-                        className="address-dropdown__item"
-                        onClick={() => selectPostcode(pc)}
-                      >
-                        <strong>{pc}</strong>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="address-dropdown__loading">No postcodes found</div>
-              )}
+              ) : error ? (
+                <div className="address-dropdown__loading address-dropdown__error">{error}</div>
+              ) : addresses.length > 0 ? (
+                <>
+                  <div className="address-dropdown__count">
+                    {addresses.length} address{addresses.length !== 1 ? 'es' : ''} found
+                  </div>
+                  <ul className="address-dropdown__list">
+                    {addresses.map((addr, i) => (
+                      <li key={i}>
+                        <button
+                          type="button"
+                          className="address-dropdown__item"
+                          onClick={() => selectAddress(addr)}
+                        >
+                          <strong>{addr.line_1}{addr.line_2 ? `, ${addr.line_2}` : ''}</strong>
+                          <span>{addr.post_town}, {addr.postcode}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
             </div>
           )}
         </div>
@@ -167,25 +177,16 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
           <div className="address-lookup__confirmed-header">
             <div className="address-lookup__confirmed-postcode">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>{confirmed.postcode}</span>
-              <span className="address-lookup__confirmed-area">{confirmed.ward}, {confirmed.district}</span>
+              <span className="address-lookup__confirmed-text">{selectedAddress}</span>
             </div>
             <button type="button" className="address-lookup__change-btn" onClick={handleReset}>
               Change
             </button>
           </div>
-          <input
-            type="text"
-            placeholder="House number and street name"
-            value={streetAddress}
-            onChange={(e) => setStreetAddress(e.target.value)}
-            className="address-lookup__input address-lookup__street-input"
-            autoFocus
-          />
         </div>
       )}
 
-      <input type="hidden" name={name} value={fullAddress} />
+      <input type="hidden" name={name} value={selectedAddress} />
     </div>
   )
 }
