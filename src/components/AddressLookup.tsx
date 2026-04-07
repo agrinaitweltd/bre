@@ -45,31 +45,45 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
 
     try {
       const res = await fetch(url)
-      const data = await res.json()
+      let data: { code: number; result?: IdealAddress[]; message?: string }
 
-      if (data.code === 2000 || (data.result && data.result.length === 0)) {
+      try {
+        data = await res.json()
+      } catch {
         setAddresses([])
-        setError('No addresses found for this postcode')
+        setError('Postcode not found. Please check and try again.')
         setShowDropdown(true)
         return
       }
 
-      if (data.code && data.code !== 2000) {
-        setAddresses([])
-        setError('Invalid postcode. Please check and try again.')
-        setShowDropdown(true)
-        return
-      }
-
-      if (Array.isArray(data.result) && data.result.length > 0) {
+      // Success response
+      if (data.code === 2000 && Array.isArray(data.result) && data.result.length > 0) {
         setAddresses(data.result)
         setError('')
         setShowDropdown(true)
-      } else {
-        setAddresses([])
-        setError('No addresses found for this postcode')
-        setShowDropdown(true)
+        return
       }
+
+      // Postcode not found (4040) or no results
+      if (data.code === 4040) {
+        setAddresses([])
+        setError('Postcode not found. Please check and try again.')
+        setShowDropdown(true)
+        return
+      }
+
+      // Invalid key or other errors
+      if (data.code === 4010 || data.code === 4020) {
+        setAddresses([])
+        setError('Address lookup temporarily unavailable.')
+        setShowDropdown(true)
+        return
+      }
+
+      // Fallback
+      setAddresses([])
+      setError('No addresses found for this postcode')
+      setShowDropdown(true)
     } catch {
       setAddresses([])
       setError('Connection error. Please try again.')
@@ -120,25 +134,42 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
     setError('')
   }
 
+  function handleFindClick() {
+    const cleaned = postcodeQuery.replace(/\s+/g, '')
+    if (cleaned.length >= 3) {
+      setLoading(true)
+      setShowDropdown(true)
+      fetchAddresses(postcodeQuery).then(() => setLoading(false))
+    }
+  }
+
   return (
     <div className="address-lookup" ref={wrapRef}>
       <label className="address-lookup__label" htmlFor={id}>{label}</label>
 
       {!selectedAddress ? (
         <div className="address-lookup__postcode-wrap">
-          <input
-            type="text"
-            id={id}
-            placeholder={placeholder || 'Enter postcode e.g. BR3 1SQ'}
-            value={postcodeQuery}
-            onChange={handlePostcodeChange}
-            onFocus={() => addresses.length > 0 && setShowDropdown(true)}
-            autoComplete="off"
-            className="address-lookup__input"
-          />
-          {loading && !showDropdown && (
-            <span className="address-lookup__spinner" />
-          )}
+          <div className="address-lookup__input-row">
+            <input
+              type="text"
+              id={id}
+              placeholder={placeholder || 'Enter postcode e.g. BR3 1SQ'}
+              value={postcodeQuery}
+              onChange={handlePostcodeChange}
+              onFocus={() => addresses.length > 0 && setShowDropdown(true)}
+              onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleFindClick())}
+              autoComplete="off"
+              className="address-lookup__input"
+            />
+            <button
+              type="button"
+              className="address-lookup__find-btn"
+              onClick={handleFindClick}
+              disabled={loading}
+            >
+              {loading ? 'Searching...' : 'Find Address'}
+            </button>
+          </div>
           {showDropdown && (
             <div className="address-dropdown">
               {loading ? (

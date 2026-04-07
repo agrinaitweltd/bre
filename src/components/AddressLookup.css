@@ -17,6 +17,38 @@
   position: relative;
 }
 
+.address-lookup__input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.address-lookup__input-row .address-lookup__input {
+  flex: 1;
+}
+
+.address-lookup__find-btn {
+  padding: 12px 20px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.address-lookup__find-btn:hover {
+  background: var(--primary-dark);
+}
+
+.address-lookup__find-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .address-lookup__input {
   width: 100%;
   padding: 12px 16px;
