@@ -29,11 +29,19 @@ const testimonials = [
   { name: 'Amara O.', location: 'Brixton, London', text: 'As a student on a budget, I was worried about moving costs. Breezyee offered a brilliant student rate and the service was top-notch. Love their community focus!', rating: 5 },
 ]
 
+const helpedCategories = [
+  { icon: 'home', title: 'Conveyancing', desc: 'Complete legal support for buying and selling properties, handled by expert solicitors.' },
+  { icon: 'search', title: 'Surveyors', desc: 'Professional property surveys to give you peace of mind before your move.' },
+  { icon: 'truck', title: 'Removals', desc: 'Full-service packing, loading, and delivery to your new home or office.' },
+  { icon: 'shield', title: 'Storage', desc: 'Secure, flexible storage solutions while you settle into your new space.' },
+]
+
 export default function Home() {
   const servicesRef = useInView<HTMLElement>()
   const aboutRef = useInView<HTMLElement>()
   const whyRef = useInView<HTMLElement>()
   const howRef = useInView<HTMLElement>()
+  const helpedRef = useInView<HTMLElement>()
   const testimonialsRef = useInView<HTMLElement>()
 
   return (
@@ -142,6 +150,37 @@ export default function Home() {
                 <span className="step-card__num">{step.num}</span>
                 <h3 className="step-card__title">{step.title}</h3>
                 <p className="step-card__desc">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* We've Already Helped */}
+      <section className="section home-helped" ref={helpedRef}>
+        <div className="container">
+          <span className="home-helped__eyebrow fade-in">Trusted Nationwide</span>
+          <h2 className="home-helped__title fade-in">
+            We've already helped over <span className="home-helped__count">2,882,905</span> movers
+          </h2>
+          <p className="home-helped__subtitle fade-in">
+            From first-time tenants to large commercial relocations, our network of partners cover every step of your journey.
+          </p>
+          <div className="home-helped__grid stagger-children">
+            {helpedCategories.map((cat) => (
+              <div className="home-helped__card" key={cat.title}>
+                <div className="home-helped__card-icon">
+                  {cat.icon === 'home' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>}
+                  {cat.icon === 'search' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>}
+                  {cat.icon === 'truck' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
+                  {cat.icon === 'shield' && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                </div>
+                <h3 className="home-helped__card-title">{cat.title}</h3>
+                <p className="home-helped__card-desc">{cat.desc}</p>
+                <Link to="/contact" className="home-helped__card-btn">
+                  Get Quotes
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </Link>
               </div>
             ))}
           </div>

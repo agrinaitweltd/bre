@@ -310,6 +310,103 @@
   line-height: 1.65;
 }
 
+/* ========== Home: We've Already Helped ========== */
+.home-helped {
+  background: var(--primary-dark);
+  color: var(--white);
+  text-align: center;
+}
+
+.home-helped__eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 14px;
+}
+
+.home-helped__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.home-helped__count {
+  color: var(--secondary-light, #5FC9C2);
+}
+
+.home-helped__subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.home-helped__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.home-helped__card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: left;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.home-helped__card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.home-helped__card-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  color: var(--secondary-light, #5FC9C2);
+}
+
+.home-helped__card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--white);
+}
+
+.home-helped__card-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.home-helped__card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #E8789A;
+  transition: gap 0.25s ease;
+}
+
+.home-helped__card:hover .home-helped__card-btn {
+  gap: 10px;
+}
+
 /* ========== Home: Testimonials ========== */
 .home-testimonials {
   background: var(--bg);
@@ -380,6 +477,10 @@
   .why-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .home-helped__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -402,6 +503,10 @@
   }
 
   .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-helped__grid {
     grid-template-columns: 1fr;
   }
 }

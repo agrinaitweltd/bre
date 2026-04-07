@@ -125,9 +125,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="hero__image">
-          <img src="/hero-person.png" alt="Professional mover" />
-        </div>
       </div>
       <div className="hero__stats">
         <div className="container hero__stats-inner">

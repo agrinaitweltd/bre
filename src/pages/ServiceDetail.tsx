@@ -12,11 +12,13 @@ export default function ServiceDetail() {
   const statsRef = useInView<HTMLElement>()
   const approachRef = useInView<HTMLElement>()
   const faqRef = useInView<HTMLElement>()
+  const otherRef = useInView<HTMLElement>()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   if (!service) return <Navigate to="/services" replace />
 
   const related = services.filter((s) => s.group === service.group && s.slug !== service.slug).slice(0, 2)
+  const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 4)
 
   return (
     <>
@@ -79,7 +81,7 @@ export default function ServiceDetail() {
               </ul>
             </div>
 
-            <Link to="/contact" className="btn btn-primary sd-about__cta">
+            <Link to={`/contact?service=${encodeURIComponent(service.title)}`} className="btn btn-primary sd-about__cta">
               Request a Quote
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
@@ -96,7 +98,7 @@ export default function ServiceDetail() {
           </div>
           <div className="sd-approach__content fade-in">
             <p>{service.approach}</p>
-            <Link to="/contact" className="btn btn-primary sd-approach__cta">
+            <Link to={`/contact?service=${encodeURIComponent(service.title)}`} className="btn btn-primary sd-approach__cta">
               Book a Consultation
             </Link>
           </div>
@@ -132,6 +134,34 @@ export default function ServiceDetail() {
           </div>
         </section>
       )}
+
+      {/* Explore Other Services */}
+      <section className="section sd-other" ref={otherRef}>
+        <div className="container">
+          <span className="section-eyebrow fade-in">Explore More</span>
+          <h2 className="section-title fade-in">See Our Other Services</h2>
+          <p className="section-subtitle fade-in">
+            We offer a full range of removal and logistics services to meet every need.
+          </p>
+          <div className="sd-other__grid stagger-children">
+            {otherServices.map((s) => (
+              <Link to={`/services/${s.slug}`} className="sd-other__card" key={s.slug}>
+                <div className="sd-other__card-img">
+                  {s.bannerImg && <img src={s.bannerImg} alt={s.title} loading="lazy" />}
+                </div>
+                <div className="sd-other__card-body">
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                  <span className="sd-other__card-link">
+                    Learn More
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Related Services */}
       {related.length > 0 && (

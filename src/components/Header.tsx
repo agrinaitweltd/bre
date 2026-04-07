@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { getServicesByGroup, type ServiceData } from '../data/services'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { getServicesByGroup, services, type ServiceData } from '../data/services'
 import './Header.css'
 
 const navLinks = [
@@ -14,11 +14,32 @@ const homeServices = getServicesByGroup('home')
 const businessServices = getServicesByGroup('business')
 const allServices = [...homeServices, ...businessServices]
 
+// All searchable pages
+const searchablePages = [
+  ...services.map((s) => ({ title: s.title, path: `/services/${s.slug}`, desc: s.desc })),
+  { title: 'Home', path: '/', desc: 'Breezyee Moves home page' },
+  { title: 'About Us', path: '/about', desc: 'Learn about Breezyee Moves' },
+  { title: 'Our Services', path: '/services', desc: 'View all our services' },
+  { title: 'Contact / Get a Quote', path: '/contact', desc: 'Get a free quote for your move' },
+]
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   const location = useLocation()
+  const navigate = useNavigate()
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
+  const searchResults = searchQuery.trim().length > 0
+    ? searchablePages.filter(
+        (p) =>
+          p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.desc.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : []
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -29,12 +50,39 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false)
     setServicesOpen(false)
+    setSearchOpen(false)
+    setSearchQuery('')
   }, [location])
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus()
+    }
+  }, [searchOpen])
+
+  const handleMenuClick = () => {
+    if (menuOpen) {
+      setMenuOpen(false)
+    } else {
+      // On desktop when scrolled, scroll to top instead of opening menu
+      if (scrolled && window.innerWidth > 768) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        setMenuOpen(true)
+      }
+    }
+  }
+
+  const handleSearchNav = (path: string) => {
+    setSearchOpen(false)
+    setSearchQuery('')
+    navigate(path)
+  }
 
   return (
     <>
@@ -105,25 +153,75 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Quote button — visible before scroll on desktop */}
-          <Link to="/contact" className={`header__quote-btn${scrolled ? ' header__quote-btn--hidden' : ''}`}>
-            Quote
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </Link>
+          {/* Right-side actions */}
+          <div className="header__actions">
+            {/* Search button */}
+            <button
+              className="header__search-btn"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
 
-          {/* Menu button — visible after scroll on desktop, always on mobile */}
-          <button
-            className={`header__menu-btn${scrolled ? ' header__menu-btn--visible' : ''}${menuOpen ? ' header__menu-btn--open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="header__menu-btn-text">{menuOpen ? 'CLOSE' : 'MENU'}</span>
-            <span className="header__menu-btn-icon">
-              <span />
-              <span />
-            </span>
-          </button>
+            {/* Quote button — visible before scroll on desktop */}
+            <Link to="/contact" className={`header__quote-btn${scrolled ? ' header__quote-btn--hidden' : ''}`}>
+              Quote
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </Link>
+
+            {/* Menu button — visible after scroll on desktop, always on mobile */}
+            <button
+              className={`header__menu-btn${scrolled ? ' header__menu-btn--visible' : ''}${menuOpen ? ' header__menu-btn--open' : ''}`}
+              onClick={handleMenuClick}
+              aria-label="Toggle menu"
+            >
+              <span className="header__menu-btn-text">{menuOpen ? 'CLOSE' : 'MENU'}</span>
+              <span className="header__menu-btn-icon">
+                <span />
+                <span />
+              </span>
+            </button>
+          </div>
         </div>
+
+        {/* Search dropdown */}
+        {searchOpen && (
+          <div className="header__search-panel">
+            <div className="container">
+              <div className="header__search-input-wrap">
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  className="header__search-input"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery('') }
+                    if (e.key === 'Enter' && searchResults.length > 0) handleSearchNav(searchResults[0].path)
+                  }}
+                />
+                <svg className="header__search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              {searchResults.length > 0 && (
+                <ul className="header__search-results">
+                  {searchResults.map((r) => (
+                    <li key={r.path}>
+                      <button onClick={() => handleSearchNav(r.path)} className="header__search-result">
+                        <strong>{r.title}</strong>
+                        <span>{r.desc}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {searchQuery.trim().length > 0 && searchResults.length === 0 && (
+                <p className="header__search-empty">No results found for "{searchQuery}"</p>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Fullscreen menu overlay */}

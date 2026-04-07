@@ -30,17 +30,40 @@ const testimonials = [
 
 const partnerBadges = ['Fully Insured', 'Ombudsman Backed', 'Competitive', 'Vetted']
 
+const inventoryRooms: { name: string; items: string[] }[] = [
+  { name: 'Living Room', items: ['TV', 'TV Stand', 'Coffee Table', 'Sofa (2 Seater)', 'Sofa (3 Seater)', 'Armchair', 'Bookshelf', 'Side Table', 'Rug', 'Floor Lamp'] },
+  { name: 'Kitchen', items: ['Fridge Freezer', 'Washing Machine', 'Dishwasher', 'Microwave', 'Dining Table', 'Dining Chairs', 'Kitchen Trolley', 'Bar Stool'] },
+  { name: 'Bedroom', items: ['Single Bed', 'Double Bed', 'King Bed', 'Wardrobe', 'Chest of Drawers', 'Bedside Table', 'Dressing Table', 'Mirror'] },
+  { name: 'Dining & Hall', items: ['Dining Table', 'Dining Chairs', 'Sideboard', 'Console Table', 'Hallway Table', 'Coat Stand', 'Shoe Rack'] },
+  { name: 'Office', items: ['Office Desk', 'Office Chair', 'Filing Cabinet', 'Bookcase', 'Printer', 'Monitor', 'Desktop PC'] },
+  { name: 'Garden & Garage', items: ['Lawnmower', 'BBQ', 'Garden Table', 'Garden Chairs', 'Bicycle', 'Tool Box', 'Workbench'] },
+  { name: 'Boxes', items: ['Small Box', 'Medium Box', 'Large Box', 'Wardrobe Box', 'Fragile Box', 'Suitcase'] },
+]
+
 export default function Contact() {
   const formRef = useInView<HTMLElement>()
   const [searchParams] = useSearchParams()
   const [submitted, setSubmitted] = useState(false)
   const [propertySize, setPropertySize] = useState('')
   const [selectedService, setSelectedService] = useState(searchParams.get('service') || '')
+  const [activeRoom, setActiveRoom] = useState(0)
+  const [inventory, setInventory] = useState<Record<string, number>>({})
+  const [showInventory, setShowInventory] = useState(false)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     setSubmitted(true)
   }
+
+  const getCount = (item: string) => inventory[`${inventoryRooms[activeRoom].name}::${item}`] || 0
+
+  const setCount = (item: string, val: number) => {
+    if (val < 0) return
+    const key = `${inventoryRooms[activeRoom].name}::${item}`
+    setInventory((prev) => ({ ...prev, [key]: val }))
+  }
+
+  const totalItems = Object.values(inventory).reduce((sum, v) => sum + v, 0)
 
   return (
     <>
@@ -121,6 +144,57 @@ export default function Contact() {
                     <label htmlFor="instructions">Special instructions</label>
                     <textarea id="instructions" name="instructions" rows={3} placeholder="Please list special requirements e.g. packing / storage / pianos / awkward access / limited parking..." />
                   </div>
+                </div>
+
+                {/* Item Inventory */}
+                <div className="contact-form__section">
+                  <div className="contact-form__inventory-header">
+                    <div>
+                      <h2 className="contact-form__section-title">Item Inventory</h2>
+                      <p className="contact-form__section-note">
+                        Add items you'll need moved for a more accurate quote. {totalItems > 0 && <strong>{totalItems} item{totalItems !== 1 ? 's' : ''} added</strong>}
+                      </p>
+                    </div>
+                    <button type="button" className="contact-form__inventory-toggle" onClick={() => setShowInventory(!showInventory)}>
+                      {showInventory ? 'Hide' : 'Add Items'}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: showInventory ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s' }}>
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                  {showInventory && (
+                    <div className="contact-inventory">
+                      <div className="contact-inventory__tabs">
+                        {inventoryRooms.map((room, i) => (
+                          <button
+                            type="button"
+                            key={room.name}
+                            className={`contact-inventory__tab${activeRoom === i ? ' contact-inventory__tab--active' : ''}`}
+                            onClick={() => setActiveRoom(i)}
+                          >
+                            {room.name}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="contact-inventory__items">
+                        {inventoryRooms[activeRoom].items.map((item) => (
+                          <div className="contact-inventory__row" key={item}>
+                            <span className="contact-inventory__item-name">{item}</span>
+                            <div className="contact-inventory__counter">
+                              <button type="button" className="contact-inventory__btn" onClick={() => setCount(item, getCount(item) - 1)} disabled={getCount(item) === 0}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                              </button>
+                              <span className="contact-inventory__count">{getCount(item)}</span>
+                              <button type="button" className="contact-inventory__btn contact-inventory__btn--add" onClick={() => setCount(item, getCount(item) + 1)}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Personal Details */}
