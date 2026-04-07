@@ -108,7 +108,7 @@
 
 .home-about-breezyee__image img {
   width: 100%;
-  height: 100%;
+  display: block;
   object-fit: cover;
   min-height: 460px;
 }
