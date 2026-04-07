@@ -65,6 +65,19 @@ export default function Header() {
     }
   }, [searchOpen])
 
+  // Close search results on click outside
+  useEffect(() => {
+    if (!searchOpen) return
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.header__search-bar')) {
+        setSearchOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [searchOpen])
+
   const handleMenuClick = () => {
     if (menuOpen) {
       setMenuOpen(false)
@@ -153,17 +166,46 @@ export default function Header() {
             ))}
           </nav>
 
+          {/* Inline search bar — visible at top on desktop, always on mobile */}
+          <div className={`header__search-bar${scrolled ? ' header__search-bar--hidden' : ''}`}>
+            <div className="header__search-bar-wrap">
+              <input
+                ref={searchInputRef}
+                type="text"
+                className="header__search-bar-input"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setSearchOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery('') }
+                  if (e.key === 'Enter' && searchResults.length > 0) handleSearchNav(searchResults[0].path)
+                }}
+              />
+              <svg className="header__search-bar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            {searchOpen && searchQuery.trim().length > 0 && (
+              <div className="header__search-dropdown">
+                {searchResults.length > 0 ? (
+                  <ul className="header__search-results">
+                    {searchResults.map((r) => (
+                      <li key={r.path}>
+                        <button onClick={() => handleSearchNav(r.path)} className="header__search-result">
+                          <strong>{r.title}</strong>
+                          <span>{r.desc}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="header__search-empty">No results found for "{searchQuery}"</p>
+                )}
+              </div>
+            )}
+          </div>
+
           {/* Right-side actions */}
           <div className="header__actions">
-            {/* Search button */}
-            <button
-              className="header__search-btn"
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Search"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </button>
-
             {/* Quote button — visible before scroll on desktop */}
             <Link to="/contact" className={`header__quote-btn${scrolled ? ' header__quote-btn--hidden' : ''}`}>
               Quote
@@ -184,44 +226,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {/* Search dropdown */}
-        {searchOpen && (
-          <div className="header__search-panel">
-            <div className="container">
-              <div className="header__search-input-wrap">
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  className="header__search-input"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery('') }
-                    if (e.key === 'Enter' && searchResults.length > 0) handleSearchNav(searchResults[0].path)
-                  }}
-                />
-                <svg className="header__search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              {searchResults.length > 0 && (
-                <ul className="header__search-results">
-                  {searchResults.map((r) => (
-                    <li key={r.path}>
-                      <button onClick={() => handleSearchNav(r.path)} className="header__search-result">
-                        <strong>{r.title}</strong>
-                        <span>{r.desc}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {searchQuery.trim().length > 0 && searchResults.length === 0 && (
-                <p className="header__search-empty">No results found for "{searchQuery}"</p>
-              )}
-            </div>
-          </div>
-        )}
       </header>
 
       {/* Fullscreen menu overlay */}
