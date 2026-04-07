@@ -105,11 +105,28 @@ export default function Hero() {
           </p>
           <div className="hero__buttons">
             <Link to="/contact" className="btn hero__btn-quote">
-              GET A QUOTE
+              Get a Free Quote
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
             <a href="#services" className="btn hero__btn-services">OUR SERVICES</a>
           </div>
+          <div className="hero__trust-row">
+            <div className="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>Fully Insured</span>
+            </div>
+            <div className="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>5-Star Rated</span>
+            </div>
+            <div className="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>No Hidden Fees</span>
+            </div>
+          </div>
+        </div>
+        <div className="hero__image">
+          <img src="/hero-person.png" alt="Professional mover" />
         </div>
       </div>
       <div className="hero__stats">

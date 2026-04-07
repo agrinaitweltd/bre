@@ -17,6 +17,12 @@ const steps = [
   { num: '03', title: 'We Move You Safely', desc: 'Sit back while our expert team handles everything with care.' },
 ]
 
+const aboutFeatures = [
+  { icon: 'check', title: 'Fully Insured', desc: 'Comprehensive cover on every move we undertake.' },
+  { icon: 'check', title: 'Experienced Crew', desc: 'Skilled professionals who handle your belongings with care.' },
+  { icon: 'check', title: 'Transparent Pricing', desc: 'No hidden charges — just honest, competitive quotes.' },
+]
+
 const testimonials = [
   { name: 'Sarah T.', location: 'Islington, London', text: 'Breezyee Moves made our house move completely stress-free. The team was punctual, careful, and incredibly friendly. Could not recommend them more highly!', rating: 5 },
   { name: 'James K.', location: 'Camden, London', text: 'Used their man and van service for a last-minute move. They were flexible, affordable, and did an amazing job. Will definitely use again.', rating: 5 },
@@ -69,17 +75,31 @@ export default function Home() {
       <section className="section home-about-breezyee" ref={aboutRef}>
         <div className="container home-about-breezyee__inner">
           <div className="home-about-breezyee__image clip-reveal">
-            <img src="/about-impact.jpg" alt="Community impact" />
+            <img src="/about-impact.jpg" alt="Breezyee Moves van" />
+            <div className="home-about-breezyee__image-badge">
+              <span className="home-about-breezyee__badge-value">10+</span>
+              <span className="home-about-breezyee__badge-label">Years Experience</span>
+            </div>
           </div>
           <div className="home-about-breezyee__content slide-in-right">
             <span className="home-about-breezyee__eyebrow">About Breezyee</span>
-            <h2 className="home-about-breezyee__title">Built on trust, delivered with pride.</h2>
+            <h2 className="home-about-breezyee__title">Professional Removal Services for Your Home</h2>
             <p className="home-about-breezyee__text">
               At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book directly supports our community programme.
             </p>
-            <p className="home-about-breezyee__text">
-              Need manpower or a hassle-free end-of-tenancy clearance? Hire a Breezyee crew by the hour — efficient, thorough, and ready to work!
-            </p>
+            <div className="home-about-breezyee__features">
+              {aboutFeatures.map((f) => (
+                <div className="home-about-breezyee__feature" key={f.title}>
+                  <div className="home-about-breezyee__feature-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>{f.title}</strong>
+                    <p>{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="home-about-breezyee__logo-row">
               <img src="/logo9.png" alt="Breezyee Moves" className="home-about-breezyee__logo-badge" />
             </div>
