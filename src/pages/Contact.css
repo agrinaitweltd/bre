@@ -454,6 +454,38 @@
     padding: 12px 14px;
     min-width: 64px;
   }
+
+  .contact-form__inventory-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-form__inventory-toggle {
+    align-self: flex-start;
+  }
+
+  .contact-inventory__tab {
+    padding: 10px 14px;
+    font-size: 0.75rem;
+  }
+
+  .contact-inventory__row {
+    padding: 10px 14px;
+  }
+
+  .contact-inventory__item-name {
+    font-size: 0.84rem;
+  }
+
+  .contact-inventory__btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .contact-inventory__count {
+    width: 32px;
+    font-size: 0.84rem;
+  }
 }
 
 @media (max-width: 500px) {
