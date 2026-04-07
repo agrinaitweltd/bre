@@ -17,7 +17,6 @@ export default function ServiceDetail() {
 
   if (!service) return <Navigate to="/services" replace />
 
-  const related = services.filter((s) => s.group === service.group && s.slug !== service.slug).slice(0, 2)
   const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 4)
 
   return (
@@ -56,11 +55,9 @@ export default function ServiceDetail() {
       <section className="section sd-about" ref={aboutRef}>
         <div className="container sd-about__grid">
           <div className="sd-about__image slide-in-left">
-            {service.detailImg ? (
+            {service.detailImg && (
               <img src={service.detailImg} alt={service.title} />
-            ) : service.img ? (
-              <img src={service.img} alt={service.title} />
-            ) : null}
+            )}
           </div>
           <div className="sd-about__content slide-in-right">
             <span className="sd-about__eyebrow fade-in">About This Service</span>
@@ -162,30 +159,6 @@ export default function ServiceDetail() {
           </div>
         </div>
       </section>
-
-      {/* Related Services */}
-      {related.length > 0 && (
-        <section className="section sd-related">
-          <div className="container">
-            <h2 className="section-title fade-in">Related Services</h2>
-            <div className="sd-related__grid">
-              {related.map((s, i) => (
-                <Link to={`/services/${s.slug}`} className="sd-related__card fade-in" key={s.slug} style={{ transitionDelay: `${i * 80}ms` }}>
-                  {s.bannerImg && (
-                    <div className="sd-related__img">
-                      <img src={s.bannerImg} alt={s.title} />
-                    </div>
-                  )}
-                  <div className="sd-related__body">
-                    <h3>{s.title}</h3>
-                    <p>{s.desc}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   )
 }

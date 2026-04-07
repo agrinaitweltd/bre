@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useInView } from '../hooks/useInView'
 import { useSearchParams } from 'react-router-dom'
+import AddressLookup from '../components/AddressLookup'
 import './Contact.css'
 
 const serviceOptions = [
@@ -21,6 +22,10 @@ const propertySizes = [
   { label: '3 Bed', icon: '🏡' },
   { label: '4 Bed', icon: '🏡' },
   { label: '5+ Bed', icon: '🏘️' },
+  { label: 'Studio', icon: '🏢' },
+  { label: 'Office', icon: '🏬' },
+  { label: 'Warehouse', icon: '🏭' },
+  { label: 'Storage Unit', icon: '📦' },
 ]
 
 const testimonials = [
@@ -126,14 +131,18 @@ export default function Contact() {
                       ))}
                     </select>
                   </div>
-                  <div className="contact-form__field">
-                    <label htmlFor="current-address">Current property address</label>
-                    <input type="text" id="current-address" name="current-address" placeholder="Start typing the address or postcode..." />
-                  </div>
-                  <div className="contact-form__field">
-                    <label htmlFor="new-address">New property address</label>
-                    <input type="text" id="new-address" name="new-address" placeholder="Start typing the address or postcode..." />
-                  </div>
+                  <AddressLookup
+                    id="current-address"
+                    name="current-address"
+                    label="Current property address"
+                    placeholder="Start typing a postcode e.g. BR3 1SQ..."
+                  />
+                  <AddressLookup
+                    id="new-address"
+                    name="new-address"
+                    label="New property address"
+                    placeholder="Start typing a postcode e.g. SW1A 1AA..."
+                  />
                   <div className="contact-form__row">
                     <div className="contact-form__field">
                       <label htmlFor="move-date">Estimated moving date</label>

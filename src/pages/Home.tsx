@@ -84,10 +84,6 @@ export default function Home() {
         <div className="container home-about-breezyee__inner">
           <div className="home-about-breezyee__image slide-in-left">
             <img src="/about-impact.png" alt="Breezyee Moves van" />
-            <div className="home-about-breezyee__image-badge zoom-pop">
-              <span className="home-about-breezyee__badge-value">10+</span>
-              <span className="home-about-breezyee__badge-label">Years Experience</span>
-            </div>
           </div>
           <div className="home-about-breezyee__content slide-in-right">
             <span className="home-about-breezyee__eyebrow">About Breezyee</span>
