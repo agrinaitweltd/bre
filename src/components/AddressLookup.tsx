@@ -1,13 +1,6 @@
 import { useState, useRef, useEffect, type ChangeEvent } from 'react'
 import './AddressLookup.css'
 
-interface Address {
-  line1: string
-  line2: string
-  city: string
-  postcode: string
-}
-
 interface Props {
   id: string
   name: string
@@ -15,34 +8,27 @@ interface Props {
   placeholder?: string
 }
 
-interface PostcodesIoResult {
+interface PostcodeResult {
   postcode: string
-  admin_ward: string
-  parish: string
-  admin_district: string
-  country: string
+  ward: string
+  district: string
   region: string
-  parliamentary_constituency: string
-}
-
-interface PostcodesIoAutocompleteResponse {
-  status: number
-  result: string[] | null
-}
-
-interface PostcodesIoLookupResponse {
-  status: number
-  result: PostcodesIoResult | null
 }
 
 export default function AddressLookup({ id, name, label, placeholder }: Props) {
-  const [query, setQuery] = useState('')
-  const [suggestions, setSuggestions] = useState<Address[]>([])
+  const [postcodeQuery, setPostcodeQuery] = useState('')
+  const [postcodeSuggestions, setPostcodeSuggestions] = useState<string[]>([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [selectedAddress, setSelectedAddress] = useState('')
+  const [confirmed, setConfirmed] = useState<PostcodeResult | null>(null)
+  const [streetAddress, setStreetAddress] = useState('')
   const wrapRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  // Full address for form submission
+  const fullAddress = confirmed
+    ? `${streetAddress ? streetAddress + ', ' : ''}${confirmed.ward}, ${confirmed.district}, ${confirmed.postcode}`
+    : ''
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -54,128 +40,152 @@ export default function AddressLookup({ id, name, label, placeholder }: Props) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  async function lookupPostcode(postcode: string): Promise<Address[]> {
+  async function autocompletePostcode(partial: string): Promise<string[]> {
     try {
-      const cleaned = postcode.replace(/\s+/g, '').toUpperCase()
-      // First try direct lookup for a full postcode
-      const lookupRes = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}`)
-      const lookupData: PostcodesIoLookupResponse = await lookupRes.json()
-
-      if (lookupData.status === 200 && lookupData.result) {
-        const r = lookupData.result
-        // Generate realistic address suggestions for the postcode area
-        const addresses: Address[] = generateAddresses(r.postcode, r.admin_ward, r.admin_district)
-        return addresses
+      const cleaned = partial.replace(/\s+/g, '').toUpperCase()
+      const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}/autocomplete`)
+      const data = await res.json()
+      if (data.status === 200 && Array.isArray(data.result)) {
+        return data.result.slice(0, 8)
       }
-
-      // If not a full postcode, try autocomplete
-      const autoRes = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}/autocomplete`)
-      const autoData: PostcodesIoAutocompleteResponse = await autoRes.json()
-
-      if (autoData.status === 200 && autoData.result && autoData.result.length > 0) {
-        // Look up the first few results
-        const results: Address[] = []
-        const toFetch = autoData.result.slice(0, 5)
-        const promises = toFetch.map(async (pc) => {
-          const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(pc)}`)
-          const data: PostcodesIoLookupResponse = await res.json()
-          if (data.status === 200 && data.result) {
-            const addrs = generateAddresses(data.result.postcode, data.result.admin_ward, data.result.admin_district)
-            results.push(...addrs.slice(0, 3))
-          }
-        })
-        await Promise.all(promises)
-        return results
-      }
-
       return []
     } catch {
       return []
     }
   }
 
-  function generateAddresses(postcode: string, ward: string, district: string): Address[] {
-    const streetNames = ['High Street', 'Church Road', 'Station Road', 'Park Avenue', 'Victoria Road', 'Manor Lane', 'Kings Road', 'Queens Drive']
-    const count = Math.min(6, streetNames.length)
-    const addresses: Address[] = []
-
-    for (let i = 0; i < count; i++) {
-      addresses.push({
-        line1: `${(i + 1) * 2} ${streetNames[i]}`,
-        line2: ward || '',
-        city: district,
-        postcode,
-      })
+  async function validatePostcode(postcode: string): Promise<PostcodeResult | null> {
+    try {
+      const cleaned = postcode.replace(/\s+/g, '').toUpperCase()
+      const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}`)
+      const data = await res.json()
+      if (data.status === 200 && data.result) {
+        return {
+          postcode: data.result.postcode,
+          ward: data.result.admin_ward || '',
+          district: data.result.admin_district || '',
+          region: data.result.region || '',
+        }
+      }
+      return null
+    } catch {
+      return null
     }
-    return addresses
   }
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function handlePostcodeChange(e: ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
-    setQuery(val)
-    setSelectedAddress('')
+    setPostcodeQuery(val)
+    setConfirmed(null)
+    setStreetAddress('')
 
     if (debounceRef.current) clearTimeout(debounceRef.current)
 
     const cleaned = val.replace(/\s+/g, '')
     if (cleaned.length >= 2) {
       setLoading(true)
+      setShowDropdown(true)
       debounceRef.current = setTimeout(async () => {
-        const results = await lookupPostcode(val)
-        setSuggestions(results)
-        setShowDropdown(results.length > 0)
+        const results = await autocompletePostcode(val)
+        setPostcodeSuggestions(results)
         setLoading(false)
-      }, 400)
+      }, 300)
     } else {
-      setSuggestions([])
+      setPostcodeSuggestions([])
       setShowDropdown(false)
       setLoading(false)
     }
   }
 
-  function selectAddress(addr: Address) {
-    const full = `${addr.line1}${addr.line2 ? ', ' + addr.line2 : ''}, ${addr.city}, ${addr.postcode}`
-    setSelectedAddress(full)
-    setQuery(full)
+  async function selectPostcode(pc: string) {
+    setPostcodeQuery(pc)
+    setShowDropdown(false)
+    setLoading(true)
+    const result = await validatePostcode(pc)
+    if (result) {
+      setConfirmed(result)
+    }
+    setLoading(false)
+  }
+
+  function handleReset() {
+    setPostcodeQuery('')
+    setConfirmed(null)
+    setStreetAddress('')
+    setPostcodeSuggestions([])
     setShowDropdown(false)
   }
 
   return (
-    <div className="contact-form__field" ref={wrapRef} style={{ position: 'relative' }}>
-      <label htmlFor={id}>{label}</label>
-      <input
-        type="text"
-        id={id}
-        name={name}
-        placeholder={placeholder || 'Start typing a postcode e.g. BR3 1SQ...'}
-        value={query}
-        onChange={handleChange}
-        onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-        autoComplete="off"
-      />
-      <input type="hidden" name={`${name}-full`} value={selectedAddress} />
-      {showDropdown && (
-        <div className="address-dropdown">
-          {loading ? (
-            <div className="address-dropdown__loading">Searching addresses...</div>
-          ) : (
-            <ul className="address-dropdown__list">
-              {suggestions.map((addr, i) => (
-                <li key={i}>
-                  <button
-                    type="button"
-                    className="address-dropdown__item"
-                    onClick={() => selectAddress(addr)}
-                  >
-                    <strong>{addr.line1}</strong>
-                    <span>{addr.line2 ? `${addr.line2}, ` : ''}{addr.city}, {addr.postcode}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
+    <div className="address-lookup" ref={wrapRef}>
+      <label className="address-lookup__label">{label}</label>
+
+      {!confirmed ? (
+        <div className="address-lookup__postcode-wrap">
+          <input
+            type="text"
+            id={id}
+            placeholder={placeholder || 'Enter postcode e.g. BR3 1SQ'}
+            value={postcodeQuery}
+            onChange={handlePostcodeChange}
+            onFocus={() => postcodeSuggestions.length > 0 && setShowDropdown(true)}
+            autoComplete="off"
+            className="address-lookup__input"
+          />
+          {loading && !showDropdown && (
+            <span className="address-lookup__spinner" />
+          )}
+          {showDropdown && (
+            <div className="address-dropdown">
+              {loading ? (
+                <div className="address-dropdown__loading">
+                  <span className="address-dropdown__spinner-inline" />
+                  Searching postcodes...
+                </div>
+              ) : postcodeSuggestions.length > 0 ? (
+                <ul className="address-dropdown__list">
+                  {postcodeSuggestions.map((pc) => (
+                    <li key={pc}>
+                      <button
+                        type="button"
+                        className="address-dropdown__item"
+                        onClick={() => selectPostcode(pc)}
+                      >
+                        <strong>{pc}</strong>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="address-dropdown__loading">No postcodes found</div>
+              )}
+            </div>
           )}
         </div>
+      ) : (
+        <div className="address-lookup__confirmed">
+          <div className="address-lookup__confirmed-header">
+            <div className="address-lookup__confirmed-postcode">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{confirmed.postcode}</span>
+              <span className="address-lookup__confirmed-area">{confirmed.ward}, {confirmed.district}</span>
+            </div>
+            <button type="button" className="address-lookup__change-btn" onClick={handleReset}>
+              Change
+            </button>
+          </div>
+          <input
+            type="text"
+            placeholder="House number and street name"
+            value={streetAddress}
+            onChange={(e) => setStreetAddress(e.target.value)}
+            className="address-lookup__input address-lookup__street-input"
+            autoFocus
+          />
+        </div>
       )}
+
+      <input type="hidden" name={name} value={fullAddress} />
     </div>
   )
 }
