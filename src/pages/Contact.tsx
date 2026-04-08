@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
 import { useInView } from '../hooks/useInView'
 import { useSearchParams } from 'react-router-dom'
+import ReCAPTCHA from 'react-google-recaptcha'
 import AddressLookup from '../components/AddressLookup'
 import './Contact.css'
 
@@ -54,9 +55,12 @@ export default function Contact() {
   const [activeRoom, setActiveRoom] = useState(0)
   const [inventory, setInventory] = useState<Record<string, number>>({})
   const [showInventory, setShowInventory] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const captchaRef = useRef<ReCAPTCHA>(null)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    if (!captchaToken) return
     setSubmitted(true)
   }
 
@@ -232,7 +236,15 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary contact-form__submit">
+                <div className="contact-form__captcha">
+                  <ReCAPTCHA
+                    ref={captchaRef}
+                    sitekey="6Ldu_KwsAAAAAHL62xddmHH8qfeTSGKbI3-xAIrq"
+                    onChange={(token) => setCaptchaToken(token)}
+                    onExpired={() => setCaptchaToken(null)}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary contact-form__submit" disabled={!captchaToken}>
                   See Your Quotes
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
