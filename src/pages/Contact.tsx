@@ -60,6 +60,7 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false)
   const captchaRef = useRef<ReCAPTCHA>(null)
   const formRef2 = useRef<HTMLFormElement>(null)
+  const successRef = useRef<HTMLDivElement>(null)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -89,6 +90,7 @@ export default function Contact() {
       })
       if (!res.ok) throw new Error('Server error')
       setSubmitted(true)
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
     } catch {
       setSubmitError('Something went wrong sending your request. Please try again or email us directly.')
     } finally {
@@ -128,7 +130,7 @@ export default function Contact() {
           {/* Form */}
           <div className="contact-form-wrap slide-in-left">
             {submitted ? (
-              <div className="contact-success">
+              <div className="contact-success" ref={successRef}>
                 <div className="contact-success__icon">
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
