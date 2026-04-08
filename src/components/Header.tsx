@@ -236,14 +236,19 @@ export default function Header() {
               <div key={link.path} className="header__mobile-item" style={{ transitionDelay: `${menuOpen ? i * 80 + 100 : 0}ms` }}>
                 <div className="header__mobile-row">
                   <span className="header__mobile-num">{link.num}</span>
-                  {link.hasDropdown ? (
-                    <button
-                      className={`header__mobile-link header__mobile-link--toggle${servicesOpen ? ' header__mobile-link--expanded' : ''}`}
-                      onClick={() => setServicesOpen(!servicesOpen)}
-                    >
-                      {link.label}
-                      <svg className="header__mobile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
-                    </button>
+                {link.hasDropdown ? (
+                    <div className="header__mobile-link-row">
+                      <Link to={link.path} className="header__mobile-link">
+                        {link.label}
+                      </Link>
+                      <button
+                        className={`header__mobile-toggle${servicesOpen ? ' header__mobile-toggle--open' : ''}`}
+                        onClick={() => setServicesOpen(!servicesOpen)}
+                        aria-label="Toggle services"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+                      </button>
+                    </div>
                   ) : (
                     <Link to={link.path} className="header__mobile-link">
                       {link.label}
@@ -255,12 +260,21 @@ export default function Header() {
                 </div>
                 {link.hasDropdown && (
                   <div className={`header__mobile-sub${servicesOpen ? ' header__mobile-sub--open' : ''}`}>
-                    {allServices.map((s: ServiceData) => (
+                    <span className="header__mobile-sub-group">For Homes &amp; Individuals</span>
+                    {homeServices.map((s: ServiceData) => (
                       <Link key={s.slug} to={`/services/${s.slug}`} className="header__mobile-sub-link">
                         <span className="header__mobile-sub-chevron">&rsaquo;</span>
                         {s.title}
                       </Link>
                     ))}
+                    <span className="header__mobile-sub-group">For Businesses</span>
+                    {businessServices.map((s: ServiceData) => (
+                      <Link key={s.slug} to={`/services/${s.slug}`} className="header__mobile-sub-link">
+                        <span className="header__mobile-sub-chevron">&rsaquo;</span>
+                        {s.title}
+                      </Link>
+                    ))}
+                    <Link to="/services" className="header__mobile-sub-all">View all services →</Link>
                   </div>
                 )}
               </div>
