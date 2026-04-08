@@ -1,5 +1,6 @@
 import { useInView } from '../hooks/useInView'
 import { Link } from 'react-router-dom'
+import Seo from '../components/Seo'
 import './About.css'
 
 const values = [
@@ -26,6 +27,11 @@ export default function About() {
 
   return (
     <>
+      <Seo
+        title="About Us | Breezyee Moves"
+        description="Learn about Breezyee Moves — a London-based social enterprise delivering reliable, fairly priced removal and logistics services across the city."
+        canonical="/about"
+      />
       {/* Hero Banner */}
       <section className="about-hero">
         <div className="about-hero__bg">

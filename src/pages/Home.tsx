@@ -2,6 +2,7 @@ import { useInView } from '../hooks/useInView'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import { services } from '../data/services'
+import Seo from '../components/Seo'
 import './Home.css'
 
 const whyUs = [
@@ -46,6 +47,11 @@ export default function Home() {
 
   return (
     <>
+      <Seo
+        title="Breezyee Moves | London Removals & Logistics"
+        description="London's trusted removal specialists. Home removals, man & van, office relocations, end of tenancy clearances and more. Get a free quote today."
+        canonical="/"
+      />
       <Hero />
 
       {/* Services Overview */}

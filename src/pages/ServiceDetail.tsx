@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { getServiceBySlug, services } from '../data/services'
 import { useInView } from '../hooks/useInView'
+import Seo from '../components/Seo'
 import './ServiceDetail.css'
 
 export default function ServiceDetail() {
@@ -21,6 +22,11 @@ export default function ServiceDetail() {
 
   return (
     <>
+      <Seo
+        title={`${service.title} | Breezyee Moves`}
+        description={`${service.desc} Professional ${service.title.toLowerCase()} service across London. Get a free quote from Breezyee Moves today.`}
+        canonical={`/services/${service.slug}`}
+      />
       {/* Hero Banner */}
       <section className="sd-hero">
         {service.bannerImg && (

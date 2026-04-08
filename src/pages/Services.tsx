@@ -1,6 +1,7 @@
 import { services } from '../data/services'
 import { useInView } from '../hooks/useInView'
 import { Link } from 'react-router-dom'
+import Seo from '../components/Seo'
 import './Services.css'
 
 const processSteps = [
@@ -17,6 +18,11 @@ export default function Services() {
 
   return (
     <>
+      <Seo
+        title="Our Services | Breezyee Moves"
+        description="Browse all removal and logistics services offered by Breezyee Moves — home removals, man & van, office relocations, end of tenancy clearance, student moves and more."
+        canonical="/services"
+      />
       <section className="services-hero" ref={heroRef}>
         <div className="services-hero__bg">
           <img src="/services-banner.png" alt="" />

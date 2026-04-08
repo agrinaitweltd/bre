@@ -3,6 +3,7 @@ import { useInView } from '../hooks/useInView'
 import { useSearchParams } from 'react-router-dom'
 import ReCAPTCHA from 'react-google-recaptcha'
 import AddressLookup from '../components/AddressLookup'
+import Seo from '../components/Seo'
 import './Contact.css'
 
 const serviceOptions = [
@@ -110,6 +111,11 @@ export default function Contact() {
 
   return (
     <>
+      <Seo
+        title="Get a Free Quote | Breezyee Moves"
+        description="Request a free removal quote from Breezyee Moves. Tell us about your move and we'll get back to you within 2 hours with a personalised price."
+        canonical="/contact"
+      />
       <section className="contact-hero">
         <div className="contact-hero__bg">
           <img src="/contact-banner.png" alt="" />
