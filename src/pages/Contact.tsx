@@ -56,12 +56,44 @@ export default function Contact() {
   const [inventory, setInventory] = useState<Record<string, number>>({})
   const [showInventory, setShowInventory] = useState(false)
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const captchaRef = useRef<ReCAPTCHA>(null)
+  const formRef2 = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (!captchaToken) return
-    setSubmitted(true)
+    setSubmitError(null)
+    setSubmitting(true)
+    const form = formRef2.current!
+    const getValue = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | null)?.value || ''
+    const payload = {
+      firstName: getValue('first-name'),
+      lastName: getValue('last-name'),
+      email: getValue('email'),
+      phone: getValue('phone'),
+      service: selectedService,
+      propertySize,
+      currentAddress: getValue('current-address'),
+      newAddress: getValue('new-address'),
+      moveDate: getValue('move-date'),
+      instructions: getValue('instructions'),
+      inventory: Object.fromEntries(Object.entries(inventory).filter(([, v]) => v > 0)),
+    }
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error('Server error')
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Something went wrong sending your request. Please try again or email us directly.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const getCount = (item: string) => inventory[`${inventoryRooms[activeRoom].name}::${item}`] || 0
@@ -104,7 +136,7 @@ export default function Contact() {
                 <p>We've received your request and will get back to you within 24 hours with your personalised quote.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="contact-form">
+              <form onSubmit={handleSubmit} className="contact-form" ref={formRef2}>
                 {/* Property Size */}
                 <div className="contact-form__section">
                   <h2 className="contact-form__section-title">Size of current property</h2>
@@ -244,9 +276,12 @@ export default function Contact() {
                     onExpired={() => setCaptchaToken(null)}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary contact-form__submit" disabled={!captchaToken}>
-                  See Your Quotes
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                {submitError && (
+                  <p className="contact-form__error">{submitError}</p>
+                )}
+                <button type="submit" className="btn btn-primary contact-form__submit" disabled={!captchaToken || submitting}>
+                  {submitting ? 'Sending…' : 'See Your Quotes'}
+                  {!submitting && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>}
                 </button>
               </form>
             )}
