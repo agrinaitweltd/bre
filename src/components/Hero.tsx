@@ -92,6 +92,7 @@ export default function Hero() {
       <div className="container hero__inner">
         <div className="hero__content">
           <span className="hero__tagline">LONDON'S TRUSTED REMOVAL SPECIALISTS</span>
+          <p className="hero__slogan">A Day's Move In A Breeze</p>
           <h1 className="hero__title">
             Moving Made{' '}
             <span className="hero__typed">
