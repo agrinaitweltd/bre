@@ -5,11 +5,60 @@ import './Hero.css'
 const phrases = ['Simple', 'Reliable', 'Stress-Free']
 
 const stats = [
-  { value: '500+', label: 'MOVES COMPLETED' },
-  { value: '10+', label: 'YEARS EXPERIENCE' },
-  { value: '100%', label: 'FULLY INSURED' },
-  { value: '5\u2605', label: 'CLIENT RATING' },
+  { end: 500, suffix: '+', label: 'MOVES COMPLETED' },
+  { end: 10, suffix: '+', label: 'YEARS EXPERIENCE' },
+  { end: 100, suffix: '%', label: 'FULLY INSURED' },
+  { end: 5, suffix: '★', label: 'CLIENT RATING' },
 ]
+
+function useCountUp(end: number, duration = 2000, start = false) {
+  const [count, setCount] = useState(0)
+  const rafRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (!start) return
+    let startTime: number | null = null
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * end))
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step)
+      }
+    }
+    rafRef.current = requestAnimationFrame(step)
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
+  }, [end, duration, start])
+
+  return count
+}
+
+function AnimatedStat({ end, suffix, label, delay }: { end: number; suffix: string; label: string; delay: number }) {
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTimeout(() => setVisible(true), delay); observer.disconnect() } },
+      { threshold: 0.3 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [delay])
+
+  const count = useCountUp(end, 2000, visible)
+
+  return (
+    <div className="hero__stat" ref={ref} style={{ animationDelay: `${1.2 + delay / 1000}s` }}>
+      <span className="hero__stat-value">{count}{suffix}</span>
+      <span className="hero__stat-label">{label}</span>
+    </div>
+  )
+}
 
 export default function Hero() {
   const [displayText, setDisplayText] = useState('')
@@ -91,7 +140,6 @@ export default function Hero() {
       </div>
       <div className="container hero__inner">
         <div className="hero__content">
-          <span className="hero__tagline">LONDON'S TRUSTED REMOVAL SPECIALISTS</span>
           <p className="hero__slogan">A Day's Move In A Breeze</p>
           <h1 className="hero__title">
             Moving Made{' '}
@@ -130,10 +178,7 @@ export default function Hero() {
       <div className="hero__stats">
         <div className="container hero__stats-inner">
           {stats.map((s, i) => (
-            <div className="hero__stat" key={s.label} style={{ animationDelay: `${1.2 + i * 0.15}s` }}>
-              <span className="hero__stat-value">{s.value}</span>
-              <span className="hero__stat-label">{s.label}</span>
-            </div>
+            <AnimatedStat key={s.label} end={s.end} suffix={s.suffix} label={s.label} delay={i * 150} />
           ))}
         </div>
       </div>
