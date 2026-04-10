@@ -1,5 +1,4 @@
 import { useInView } from '../hooks/useInView'
-import { Link } from 'react-router-dom'
 import Seo from '../components/Seo'
 import './About.css'
 
@@ -19,9 +18,7 @@ const stats = [
 
 export default function About() {
   const storyRef = useInView<HTMLElement>()
-  const missionRef = useInView<HTMLElement>()
   const valuesRef = useInView<HTMLElement>()
-  const logoRef = useInView<HTMLElement>()
   const impactRef = useInView<HTMLElement>()
   const galleryRef = useInView<HTMLElement>()
 
@@ -52,55 +49,29 @@ export default function About() {
         <div className="container about-story__grid">
           <div className="about-story__content slide-in-left">
             <span className="about-story__eyebrow">Our Story</span>
-            <h2 className="about-story__title">Founded on Craftsmanship, Built on Trust</h2>
+            <h2 className="about-story__title">Every move you book with us helps a young person build a brighter future.</h2>
             <p>
-              Breezyee Moves was founded with a single unwavering commitment — to deliver exceptional removal services that homeowners and businesses could genuinely rely on. What started as a small team of dedicated professionals has grown into a comprehensive property services company trusted by clients across London.
+              That's not marketing - it's our reason for being.
             </p>
             <p>
-              From day one, our philosophy has remained consistent: quality craftsmanship, honest communication and a genuine care for every project and every client. We believe that your home or business deserves the very best — and that's exactly what we deliver.
+              At Breezyee Moves, our social mission comes first: we bridge gaps for young people who are NEET (Not in Education, Employment, or Training), turning every removal, clearance, and logistics job into real training and employment. When you hire a Breezyee crew member by the hour - efficient, thorough, and ready to work - you're directly creating opportunities.
             </p>
             <p>
-              Today, Breezyee Moves operates a skilled, multidisciplinary team covering removals, logistics, clearance, and specialist services. Every team member shares our core values and commitment to the highest professional standard.
+              But here's the honest truth: a social mission only works if the service is brilliant. So let us tell you how we got here.
             </p>
-            <Link to="/contact" className="btn btn-primary about-story__btn">Get In Touch</Link>
+            <p>
+              It started simple: one man and his van. That was us, just getting on with it, caring about every job. Then it became one man and two boys - teaching, lifting, learning together. That small shift changed everything. We realised we weren't just moving furniture; we were building people.
+            </p>
+            <p>
+              Today, Breezyee Moves is a skilled, multidisciplinary team covering removals, logistics, clearance, and specialist services. Every Breezyee crew member shares the same values we started with: craftsmanship, honest communication, and genuine care for every client and every home.
+            </p>
+            <p>
+              We're still that one-man-and-his-van crew at heart - just bigger, stronger, and more committed than ever. Your trust built us. And with every move, we help a young person build their future.
+            </p>
+            <p>That's our story. Welcome to Breezyee Moves.</p>
           </div>
           <div className="about-story__image slide-in-right">
             <img src="/about-story.png" alt="Our team at work" />
-          </div>
-        </div>
-      </section>
-
-      {/* Brand & Social Mission */}
-      <section className="section about-brand" ref={logoRef}>
-        <div className="container about-brand__inner">
-          <div className="about-brand__logo-col scale-in">
-            <img src="/logo9.png" alt="Breezyee Moves" className="about-brand__logo-img" />
-          </div>
-          <div className="about-brand__content slide-in-right">
-            <span className="section-eyebrow">Our Social Mission</span>
-            <h2 className="about-brand__title">Bridging Gaps, Building Futures</h2>
-            <p className="about-brand__text">
-              At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book with us directly supports our training and employment programmes.
-            </p>
-            <p className="about-brand__text">
-              Need manpower or a hassle-free end-of-tenancy clearance? Hire a Breezyee crew by the hour — efficient, thorough, and ready to work!
-            </p>
-            <div className="about-brand__badges">
-              <span className="about-brand__badge">Covering London & Surrounding Areas</span>
-              <span className="about-brand__badge">BREEZYEE GROUP LTD / Company No. 15484073</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Quote */}
-      <section className="about-mission-quote" ref={missionRef}>
-        <div className="container">
-          <div className="about-mission-quote__card fade-in">
-            <span className="about-mission-quote__eyebrow">Our Mission</span>
-            <blockquote>
-              "To provide exceptional removal and logistics services that exceed expectations — delivered by skilled professionals who take genuine pride in every job, while creating meaningful opportunities for young people in our community."
-            </blockquote>
           </div>
         </div>
       </section>

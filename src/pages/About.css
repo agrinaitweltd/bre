@@ -92,10 +92,6 @@
   margin-bottom: 16px;
 }
 
-.about-story__btn {
-  margin-top: 12px;
-}
-
 .about-story__image {
   border-radius: var(--radius);
   overflow: hidden;
@@ -111,102 +107,6 @@
 
 .about-story__image:hover img {
   transform: scale(1.03);
-}
-
-/* ========== Brand & Social Mission ========== */
-.about-brand {
-  background: var(--bg);
-}
-
-.about-brand__inner {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.about-brand__logo-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 48px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-}
-
-.about-brand__logo-img {
-  max-width: 320px;
-  width: 100%;
-  height: auto;
-}
-
-.about-brand__title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.about-brand__text {
-  color: var(--text-light);
-  line-height: 1.8;
-  font-size: 0.95rem;
-  margin-bottom: 16px;
-}
-
-.about-brand__badges {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.about-brand__badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 16px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-
-/* ========== Mission Quote ========== */
-.about-mission-quote {
-  padding: 80px 0;
-  background: var(--white);
-}
-
-.about-mission-quote__card {
-  background: var(--primary);
-  border-radius: var(--radius);
-  padding: 48px 56px;
-  color: var(--white);
-}
-
-.about-mission-quote__eyebrow {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 16px;
-}
-
-.about-mission-quote__card blockquote {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 700;
-  line-height: 1.5;
-  font-style: italic;
-  border-left: 3px solid rgba(255, 255, 255, 0.4);
-  padding-left: 24px;
 }
 
 /* ========== Core Values ========== */
@@ -357,21 +257,8 @@
     height: 300px;
   }
 
-  .about-brand__inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .about-brand__logo-col {
-    padding: 32px;
-  }
-
   .values-grid {
     grid-template-columns: 1fr;
-  }
-
-  .about-mission-quote__card {
-    padding: 32px 28px;
   }
 
   .about-gallery__grid {
