@@ -2,6 +2,24 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.breezyeemoves.co.uk" }],
+      "destination": "https://breezyeemoves.co.uk/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

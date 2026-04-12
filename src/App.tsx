@@ -8,6 +8,7 @@ import Services from './pages/Services'
 import ServiceDetail from './pages/ServiceDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 import React, { Suspense } from 'react';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Suspense fallback={<div>Loading...</div>}><Admin /></Suspense>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <PageCta />
