@@ -12,6 +12,9 @@ import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 import React, { Suspense } from 'react';
 
+// Lazy load Admin page
+const Admin = React.lazy(() => import('./pages/Admin'));
+
 function App() {
   return (
     <>
@@ -36,6 +39,3 @@ function App() {
 }
 
 export default App
-
-// Lazy load Admin page
-const Admin = React.lazy(() => import('./pages/Admin'));
