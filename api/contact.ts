@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const BUSINESS_EMAIL = 'contactus@breezyeemoves.co.uk'
+const BUSINESS_EMAIL = 'flexiblezerorider@gmail.com'
 const FROM_ADDRESS = 'Breezyee Moves <no-reply@breezyeemoves.co.uk>'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
