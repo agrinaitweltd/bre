@@ -32,7 +32,7 @@ export default function Footer() {
             </p>
             <p className="footer__company-info">
               Covering London &amp; Surrounding Areas<br />
-              BREEZYEE GROUP LTD / Company No. 15484073
+                BREEZYEE GROUP LTD / Company No. 17197248
             </p>
             <p className="footer__website">www.breezyeemoves.co.uk</p>
             <div className="footer__socials">
