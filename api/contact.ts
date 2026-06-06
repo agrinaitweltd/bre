@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const BUSINESS_EMAIL = 'flexiblezerorider@gmail.com'
+const BUSINESS_EMAILS = 'flexiblezerorider@gmail.com, sandraap7557@aol.com'
 const FROM_ADDRESS = 'Breezyee Moves <no-reply@breezyeemoves.co.uk>'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -166,7 +166,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await Promise.all([
       resend.emails.send({
         from: FROM_ADDRESS,
-        to: BUSINESS_EMAIL,
+        to: BUSINESS_EMAILS,
         subject: `New Quote Request from ${firstName} ${lastName}`,
         html: businessEmailHtml,
       }),

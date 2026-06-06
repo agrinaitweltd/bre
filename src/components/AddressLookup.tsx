@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type ChangeEvent } from 'react'
 import './AddressLookup.css'
 
-const API_KEY = 'ak_mosty5ii7Ds8bSF7WcteRhwWOwsvn'
+const API_KEY = 'ak_mq2onpdu21E8k9RQR3c4eul1rlAqR'
 
 interface Props {
   id: string
