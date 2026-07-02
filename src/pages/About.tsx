@@ -3,10 +3,10 @@ import Seo from '../components/Seo'
 import './About.css'
 
 const values = [
-  { num: '01', title: 'Quality', desc: 'We use only the finest materials and proven techniques, ensuring every project we complete meets the highest standard of craftsmanship.' },
-  { num: '02', title: 'Reliability', desc: 'We show up on time, complete work on schedule and communicate clearly throughout every project — no surprises, no excuses.' },
-  { num: '03', title: 'Transparency', desc: 'Honest, upfront pricing with no hidden costs. We give you a clear picture of scope, timelines and cost from the very first meeting.' },
-  { num: '04', title: 'Excellence', desc: 'We hold ourselves to an exceptional standard in everything we do — constantly improving our practices, skills and service.' },
+  { num: '01', title: 'Quality', desc: 'We use careful methods and solid materials on every job.' },
+  { num: '02', title: 'Reliability', desc: 'We turn up on time and keep things moving smoothly.' },
+  { num: '03', title: 'Transparency', desc: 'Clear pricing and simple communication from the start.' },
+  { num: '04', title: 'Excellence', desc: 'We aim for a high standard on every move.' },
 ]
 
 const stats = [
@@ -39,7 +39,7 @@ export default function About() {
           <span className="about-hero__eyebrow fade-in">About Us</span>
           <h1 className="about-hero__title slide-in-up">About Breezyee Moves</h1>
           <p className="about-hero__subtitle fade-in">
-            Trusted removal professionals, dedicated to quality and reliability across London and surrounding areas.
+            Reliable removal services across London.
           </p>
         </div>
       </section>
@@ -49,26 +49,16 @@ export default function About() {
         <div className="container about-story__grid">
           <div className="about-story__content slide-in-left">
             <span className="about-story__eyebrow">Our Story</span>
-            <h2 className="about-story__title">Every move you book with us helps a young person build a brighter future.</h2>
+            <h2 className="about-story__title">Every move helps someone build a brighter future.</h2>
             <p>
-              That's not marketing - it's our reason for being.
+              At Breezyee Moves, we help young people gain skills and confidence through real work.
             </p>
             <p>
-              At Breezyee Moves, our social mission comes first: we bridge gaps for young people who are NEET (Not in Education, Employment, or Training), turning every removal, clearance, and logistics job into real training and employment. When you hire a Breezyee crew member by the hour - efficient, thorough, and ready to work - you're directly creating opportunities.
+              We keep our service simple: reliable moves, clear communication, and care for every home.
             </p>
             <p>
-              But here's the honest truth: a social mission only works if the service is brilliant. So let us tell you how we got here.
+              That is our story, and we are proud to keep building it with every job.
             </p>
-            <p>
-              It started simple: one man and his van. That was us, just getting on with it, caring about every job. Then it became one man and two boys - teaching, lifting, learning together. That small shift changed everything. We realised we weren't just moving furniture; we were building people.
-            </p>
-            <p>
-              Today, Breezyee Moves is a skilled, multidisciplinary team covering removals, logistics, clearance, and specialist services. Every Breezyee crew member shares the same values we started with: craftsmanship, honest communication, and genuine care for every client and every home.
-            </p>
-            <p>
-              We're still that one-man-and-his-van crew at heart - just bigger, stronger, and more committed than ever. Your trust built us. And with every move, we help a young person build their future.
-            </p>
-            <p>That's our story. Welcome to Breezyee Moves.</p>
           </div>
           <div className="about-story__image slide-in-right">
             <img src="/about-story.png" alt="Our team at work" />
@@ -83,7 +73,7 @@ export default function About() {
             <span className="section-eyebrow fade-in">What We Stand For</span>
             <h2 className="section-title fade-in">Our Core Values</h2>
             <p className="section-subtitle fade-in">
-              These principles guide every decision we make and every project we deliver.
+              These are the values behind every job.
             </p>
           </div>
           <div className="values-grid stagger-children">

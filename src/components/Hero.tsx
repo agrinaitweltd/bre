@@ -149,8 +149,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className="hero__subtitle">
-            We deliver reliable, stress-free removals across London and beyond.
-            From house moves to specialist logistics &mdash; your belongings deserve the best.
+            Reliable, stress-free removals across London and beyond.
           </p>
           <div className="hero__buttons">
             <Link to="/contact" className="btn hero__btn-quote">
