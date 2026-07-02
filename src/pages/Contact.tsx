@@ -125,7 +125,7 @@ export default function Contact() {
           <div className="contact-hero__inner">
             <h1 className="contact-hero__title slide-in-up">Get Your Free Quote</h1>
             <p className="contact-hero__subtitle fade-in">
-              Get a clear, no-obligation quote for your move.
+              Compare quotes from our expert team. Instantly get a competitive, no-obligation quote for your move.
             </p>
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function Contact() {
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
                 <h3>Thank You!</h3>
-                <p>We've got your request and will get back to you soon with your quote.</p>
+                <p>We've received your request and will get back to you within 24 hours with your personalised quote.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form" ref={formRef2}>
@@ -258,7 +258,7 @@ export default function Contact() {
                 <div className="contact-form__section">
                   <h2 className="contact-form__section-title">Your details</h2>
                   <p className="contact-form__section-note">
-                    Your details will go to our team so we can quote you.
+                    By completing this form your details are shared with our team for providing a quote, but absolutely no one else.
                   </p>
                   <div className="contact-form__row">
                     <div className="contact-form__field">

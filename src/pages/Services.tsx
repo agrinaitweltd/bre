@@ -32,7 +32,7 @@ export default function Services() {
           <span className="services-hero__eyebrow fade-in">Our Expertise</span>
           <h1 className="services-hero__title slide-in-up">Our Services</h1>
           <p className="services-hero__subtitle fade-in">
-            Professional removals and logistics across London and the UK.
+            A complete range of professional removal and logistics services, delivered to the highest standard across London and the UK.
           </p>
         </div>
       </section>
@@ -43,7 +43,7 @@ export default function Services() {
             <span className="section-eyebrow fade-in">What We Offer</span>
             <h2 className="section-title fade-in">Every Service You Need</h2>
             <p className="fade-in">
-              From home moves to specialist logistics, we cover the job.
+              From house moves to specialist logistics — our professional teams cover every aspect of removals and property services.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export default function Services() {
           </div>
 
           <div className="services-cta-wrap fade-in">
-            <p>Need something specific? We can help.</p>
+            <p>Need a custom solution? We're happy to help.</p>
             <Link to="/contact" className="btn btn-primary">Get a Quote</Link>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Services() {
             <span className="section-eyebrow fade-in">How It Works</span>
             <h2 className="section-title fade-in">Our Simple Process</h2>
             <p className="fade-in">
-              Getting started is simple. We keep things clear from first contact to the finish.
+              Getting started is straightforward. From first contact to final completion, we keep things clear and simple.
             </p>
           </div>
 

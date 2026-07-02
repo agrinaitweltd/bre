@@ -60,7 +60,7 @@ export default function Home() {
           <span className="section-eyebrow fade-in">What We Offer</span>
           <h2 className="section-title fade-in">Every Service You Need</h2>
           <p className="section-subtitle fade-in">
-            From one item to a full home move, we cover it.
+            From a single item to an entire household — our specialist teams cover every aspect of removals and logistics.
           </p>
           <div className="home-services__grid stagger-children">
             {services.slice(0, 6).map((s) => (
@@ -93,9 +93,9 @@ export default function Home() {
           </div>
           <div className="home-about-breezyee__content slide-in-right">
             <span className="home-about-breezyee__eyebrow">About Breezyee</span>
-            <h2 className="home-about-breezyee__title">Simple, Reliable Removal Services</h2>
+            <h2 className="home-about-breezyee__title">Professional Removal Services for Your Home</h2>
             <p className="home-about-breezyee__text">
-              At Breezyee Moves, we help young people build skills and confidence through real work. Every move you book supports our community programme.
+              At Breezyee Moves, we bridge gaps for young people (NEET), empowering them to overcome challenges and build brighter futures. Every move you book directly supports our community programme.
             </p>
             <div className="home-about-breezyee__features stagger-children">
               {aboutFeatures.map((f) => (
@@ -124,7 +124,7 @@ export default function Home() {
           <span className="section-eyebrow fade-in">Why Choose Us</span>
           <h2 className="section-title fade-in">The standard you deserve</h2>
           <p className="section-subtitle fade-in">
-            We keep things reliable, careful, and easy.
+            We hold ourselves to the highest professional standards so you never have to compromise.
           </p>
           <div className="why-grid stagger-children">
             {whyUs.map((item, i) => (
@@ -144,7 +144,7 @@ export default function Home() {
           <span className="section-eyebrow fade-in">How It Works</span>
           <h2 className="section-title fade-in">Our Simple Process</h2>
           <p className="section-subtitle fade-in">
-            Three easy steps.
+            Three simple steps to a stress-free move.
           </p>
           <div className="steps-grid stagger-children">
             {steps.map((step) => (
@@ -163,10 +163,10 @@ export default function Home() {
         <div className="container">
           <span className="home-helped__eyebrow fade-in">Trusted Nationwide</span>
           <h2 className="home-helped__title fade-in">
-            We've helped over <span className="home-helped__count">981</span> movers
+            We've already helped over <span className="home-helped__count">981</span> movers
           </h2>
           <p className="home-helped__subtitle fade-in">
-            From small moves to bigger jobs, we help every step of the way.
+            From first-time tenants to large commercial relocations, our network of partners cover every step of your journey.
           </p>
           <div className="home-helped__grid stagger-children">
             {helpedCategories.map((cat) => (
@@ -195,7 +195,7 @@ export default function Home() {
           <span className="section-eyebrow fade-in">Testimonials</span>
           <h2 className="section-title fade-in">What Our Customers Say</h2>
           <p className="section-subtitle fade-in">
-            Hear from people we've helped move.
+            Don't just take our word for it — hear from people we've helped move.
           </p>
           <div className="testimonials-grid stagger-children">
             {testimonials.map((t) => (
