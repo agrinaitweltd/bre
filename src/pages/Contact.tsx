@@ -11,7 +11,6 @@ const serviceOptions = [
   'End of Tenancy Clearance',
   'Student Accommodation Relocations',
   'Man & Van Collection/Delivery',
-  'Self-Drive Van Hire',
   'Office & Warehouse Relocations',
   'Construction Site Logistics',
   'On-Demand Breezyeers',

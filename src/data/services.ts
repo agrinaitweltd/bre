@@ -140,38 +140,6 @@ export const services: ServiceData[] = [
       { q: 'Is there a minimum charge?', a: 'We have a minimum 1-hour booking. After that, pricing is calculated in 30-minute increments.' },
     ],
   },
-  {
-    slug: 'self-drive-van-hire',
-    title: 'Self-Drive Van Hire',
-    group: 'home',
-    heroSubtitle: 'Drive It Yourself',
-    desc: 'Flexible van hire for DIY moves and tasks.',
-    details: 'Choose from a range of van sizes for your own DIY move or project — from small vans right up to Luton vans, all of automatic transmission. Flexible hire periods with competitive rates and comprehensive cover.\n\nAll our vans are well-maintained, clean, and come with breakdown cover included.',
-    img: '/service-icons/van-hire.svg',
-    bannerImg: '/self-drive-van.png',
-    detailImg: '/self-drive-van-detail.png',
-    included: [
-      'Small vans right up to Luton vans available',
-      'All vehicles are automatic transmission',
-      'Flexible hire periods (hourly/daily/weekly)',
-      'Breakdown cover included',
-      'Clean, well-maintained vehicles',
-      'Simple pickup and return process',
-      'Mileage options available',
-    ],
-    stats: [
-      { value: '400+', label: 'Hires Completed' },
-      { value: '98%', label: 'Client Satisfaction' },
-      { value: '5+', label: 'Years Experience' },
-      { value: '100%', label: 'Fully Insured' },
-    ],
-    approach: 'Book online or by phone, collect the van from our depot, and return when you\'re done. We make the process as simple as possible with clear terms and competitive pricing.',
-    faqs: [
-      { q: 'What licence do I need?', a: 'A full UK driving licence held for at least 2 years is required. Drivers must be aged 21+.' },
-      { q: 'Is fuel included?', a: 'Vans are supplied with a full tank. Please return with a full tank to avoid refuelling charges.' },
-      { q: 'Can I take the van outside London?', a: 'Yes, our vans can be driven anywhere in the UK. Additional mileage charges may apply for long-distance trips.' },
-    ],
-  },
 
   // For Businesses (B2B Solutions)
   {

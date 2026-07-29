@@ -6,7 +6,6 @@ const services = [
   'End of Tenancy Clearance',
   'Student Accommodation Relocations',
   'Man & Van Collection/Delivery',
-  'Self-Drive Van Hire',
   'Office & Warehouse Relocations',
   'Construction Site Logistics',
   'On-Demand Breezyeers',
@@ -32,7 +31,7 @@ export default function Footer() {
             </p>
             <p className="footer__company-info">
               Covering London &amp; Surrounding Areas<br />
-                BREEZYEE GROUP LTD / Company No. 17197248
+                BREEZYEE MOVES CIC / Company No. 17197248
             </p>
             <p className="footer__website">www.breezyeemoves.co.uk</p>
             <div className="footer__socials">
