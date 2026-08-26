@@ -112,6 +112,13 @@ export default function Home() {
             </div>
             <div className="home-about-breezyee__logo-row">
               <img src="/logo9.png" alt="Breezyee Moves" className="home-about-breezyee__logo-badge" />
+              <div className="home-about-breezyee__registration">
+                <img src="/envagency.png" alt="Environment Agency" className="home-about-breezyee__agency-logo" />
+                <p>
+                  Registered in England and Wales<br />
+                  <strong>Upper Tier Waste Carrier, Broker and Dealer — CBDU655254</strong>
+                </p>
+              </div>
             </div>
             <Link to="/about" className="btn btn-primary fade-in">Read Our Story</Link>
           </div>

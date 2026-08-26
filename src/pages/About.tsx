@@ -66,6 +66,9 @@ export default function About() {
               Today, Breezyee Moves is a skilled, multidisciplinary team covering removals, logistics, clearance, and specialist services. Every Breezyee crew member shares the same values we started with: craftsmanship, honest communication, and genuine care for every client and every home.
             </p>
             <p>
+              Breezyee Moves is registered in England and Wales and operates as an Upper Tier Waste Carrier, Broker and Dealer under registration number CBDU655254.
+            </p>
+            <p>
               We're still that one-man-and-his-van crew at heart - just bigger, stronger, and more committed than ever. Your trust built us. And with every move, we help a young person build their future.
             </p>
             <p>That's our story. Welcome to Breezyee Moves.</p>

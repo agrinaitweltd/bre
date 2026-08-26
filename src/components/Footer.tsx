@@ -31,7 +31,8 @@ export default function Footer() {
             </p>
             <p className="footer__company-info">
               Covering London &amp; Surrounding Areas<br />
-                BREEZYEE MOVES CIC / Company No. 17197248
+              BREEZYEE MOVES CIC / Company No. 17197248<br />
+              Upper Tier Waste Carrier, Broker and Dealer — CBDU655254
             </p>
             <p className="footer__website">www.breezyeemoves.co.uk</p>
             <div className="footer__socials">
