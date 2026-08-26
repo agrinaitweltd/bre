@@ -235,7 +235,8 @@
 }
 
 .home-about-breezyee__agency-logo {
-  width: 120px;
+  width: 220px;
+  max-width: 100%;
   height: auto;
 }
 
